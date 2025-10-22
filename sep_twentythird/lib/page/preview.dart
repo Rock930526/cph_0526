@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import '../pages/questionnaire_page.dart';
 
 class PreviewPage extends StatelessWidget {
   final String imagePath;
@@ -8,37 +9,47 @@ class PreviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      appBar: AppBar(title: const Text('預覽照片')),
+      body: Column(
         children: [
-          Positioned.fill(
-            child: Image.file(File(imagePath), fit: BoxFit.cover),
-          ),
-          Positioned(
-            top: 40,
-            left: 20,
-            child: CircleAvatar(
-              backgroundColor: Colors.black54,
-              child: IconButton(
-                icon: const Icon(Icons.arrow_back, color: Colors.white),
-                onPressed: () => Navigator.pop(context),
-              ),
+          Expanded(
+            child: Image.file(
+              File(imagePath),
+              fit: BoxFit.cover,
+              width: double.infinity,
             ),
           ),
-          Positioned(
-            bottom: 40,
-            left: 20,
-            right: 20,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.cyanAccent,
-                foregroundColor: Colors.black,
-              ),
-              onPressed: () {
-                Navigator.pop(context, imagePath); // 傳回給上一頁
-              },
-              child: const Text("使用照片"),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                ElevatedButton.icon(
+                  icon: const Icon(Icons.edit_note),
+                  label: const Text("前往填寫症狀問卷"),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.cyanAccent,
+                    foregroundColor: Colors.black,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => QuestionnairePage(imagePath: imagePath),
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(height: 12),
+                OutlinedButton.icon(
+                  icon: const Icon(Icons.refresh),
+                  label: const Text("重新拍攝"),
+                  onPressed: () => Navigator.pop(context),
+                )
+              ],
             ),
-          ),
+          )
         ],
       ),
     );
