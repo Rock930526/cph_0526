@@ -1,0 +1,23 @@
+Acne - Акне (угревая сыпь)  
+Actinic Keratosis - Актинический кератоз  
+Benign Tumors - Доброкачественные опухоли  
+Bullous - Буллезные заболевания  
+Candidiasis - Кандидоз  
+Drug Eruption - Лекарственная сыпь  
+Eczema - Экзема  
+Infestations/Bites - Паразитарные инфекции / укусы  
+Lichen - Лишай  
+Lupus - Волчанка  
+Moles - Родинки  
+Psoriasis - Псориаз  
+Rosacea - Розацеа (розовые угри)  
+Seborrheic Keratoses - Себорейный кератоз  
+Skin Cancer - Рак кожи  
+Sun/Sunlight Damage - Повреждение кожи солнцем  
+Tinea - Грибковые инфекции кожи (Тинея)  
+Unknown/Normal - Неизвестно / Норма  
+Vascular Tumors - Сосудистые опухоли  
+Vasculitis - Васкулит  
+Vitiligo - Витилиго  
+Warts - Бородавки  
+
