@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import '../pages/questionnaire_page.dart';
+import '../page/QuestionnairePage.dart';
 
 class PreviewPage extends StatelessWidget {
   final String imagePath;

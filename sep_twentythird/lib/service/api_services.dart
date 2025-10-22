@@ -1,8 +1,4 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
-
-class ApiService {
-  import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -19,7 +15,6 @@ Future<void> uploadImageAndSurvey(String imagePath, Map<String, dynamic> surveyD
 
   if (response.statusCode == 200) {
     final result = jsonDecode(responseBody);
-    // 你可以根據需要顯示分析結果或跳轉頁面
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
@@ -33,6 +28,4 @@ Future<void> uploadImageAndSurvey(String imagePath, Map<String, dynamic> surveyD
       const SnackBar(content: Text("上傳失敗，請稍後再試。")),
     );
   }
-}
-
 }
