@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import '../page/preview.dart'; // 確保你有這個檔案
 
 class GalleryPage extends StatefulWidget {
   const GalleryPage({super.key});
@@ -27,7 +28,26 @@ class _GalleryPageState extends State<GalleryPage> {
       body: Center(
         child: _selectedImage == null
             ? const Text("尚未選擇圖片")
-            : Image.file(_selectedImage!),
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.file(_selectedImage!),
+                  const SizedBox(height: 20),
+                  ElevatedButton.icon(
+                    icon: const Icon(Icons.check),
+                    label: const Text("使用此圖片"),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              PreviewPage(imagePath: _selectedImage!.path),
+                        ),
+                      );
+                    },
+                  )
+                ],
+              ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _pickImage,

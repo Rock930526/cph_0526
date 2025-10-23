@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/services.dart'; // 新增
 import 'package:permission_handler/permission_handler.dart';
+import '../page/QuestionnairePage.dart';
+
 
 class ImagePickerPage extends StatefulWidget {
   const ImagePickerPage({super.key});
@@ -44,10 +46,34 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
     return Scaffold(
       appBar: AppBar(title: const Text('選取或拍照')),
       body: Center(
-        child: _image == null
-            ? const Text('尚未選取圖片')
-            : Image.file(_image!),
-      ),
+  child: _image == null
+      ? const Text('尚未選取圖片')
+      : Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.file(_image!),
+            const SizedBox(height: 24),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.check),
+              label: const Text("使用這張照片"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.cyanAccent,
+                foregroundColor: Colors.black,
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => QuestionnairePage(imagePath: _image!.path),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+),
+
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [

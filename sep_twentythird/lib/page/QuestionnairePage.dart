@@ -1,3 +1,4 @@
+// === QuestionnairePage.dart ===
 import 'package:flutter/material.dart';
 import 'dart:io';
 import '../service/api_services.dart';
@@ -24,6 +25,11 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
   String usedMedication = '否';
   String medicationNote = '';
   String note = '';
+  String symmetric = '否';
+  String trigger = '';
+  String familyHistory = '';
+  String contactProducts = '';
+  String timing = '';
 
   void submit() async {
     if (!_formKey.currentState!.validate()) return;
@@ -40,7 +46,12 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
       'duration': duration,
       'usedMedication': usedMedication == '是',
       'medicationNote': medicationNote,
-      'note': note
+      'note': note,
+      'symmetric': symmetric == '是',
+      'trigger': trigger,
+      'familyHistory': familyHistory,
+      'contactProducts': contactProducts,
+      'timing': timing
     };
 
     await uploadImageAndSurvey(widget.imagePath, data, context);
@@ -101,6 +112,23 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
                   decoration: const InputDecoration(labelText: '請描述使用藥物與效果'),
                   onSaved: (val) => medicationNote = val ?? '',
                 ),
+              buildRadioGroup('是否對稱出現？', symmetric, ['是', '否'], (val) => setState(() => symmetric = val!)),
+              TextFormField(
+                decoration: const InputDecoration(labelText: '發作時間或症狀變化（如早晚差異）'),
+                onSaved: (val) => timing = val ?? '',
+              ),
+              TextFormField(
+                decoration: const InputDecoration(labelText: '近期是否接觸新產品或環境（如清潔劑、植物等）'),
+                onSaved: (val) => contactProducts = val ?? '',
+              ),
+              TextFormField(
+                decoration: const InputDecoration(labelText: '是否有家族病史（如濕疹、牛皮癬）'),
+                onSaved: (val) => familyHistory = val ?? '',
+              ),
+              TextFormField(
+                decoration: const InputDecoration(labelText: '可能的環境或飲食誘發因子'),
+                onSaved: (val) => trigger = val ?? '',
+              ),
               TextFormField(
                 decoration: const InputDecoration(labelText: '其他補充（如接觸史、過敏原等）'),
                 maxLines: 3,

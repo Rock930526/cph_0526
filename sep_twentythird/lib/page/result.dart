@@ -1,9 +1,10 @@
+// === result.dart ===
 import 'package:flutter/material.dart';
 
 class ResultPage extends StatelessWidget {
-  final String disease;       // 皮膚病名稱
-  final double confidence;    // 信心度
-  final String description;   // Ollama 產生的描述
+  final String disease;
+  final double confidence;
+  final String description;
 
   const ResultPage({
     super.key,
@@ -15,15 +16,12 @@ class ResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("辨識結果"),
-      ),
+      appBar: AppBar(title: const Text("辨識結果")),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 疾病名稱
             Text(
               "疾病類型：$disease",
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
@@ -32,8 +30,6 @@ class ResultPage extends StatelessWidget {
                   ),
             ),
             const SizedBox(height: 12),
-
-            // 信心度
             Text(
               "信心度：${(confidence * 100).toStringAsFixed(1)}%",
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -41,10 +37,8 @@ class ResultPage extends StatelessWidget {
                   ),
             ),
             const SizedBox(height: 20),
-
-            // Ollama 敘述
             Text(
-              "模型說明：",
+              "模型僅供外觀參考摘要：",
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: Colors.cyanAccent,
                   ),
@@ -60,10 +54,7 @@ class ResultPage extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(height: 20),
-
-            // 返回首頁按鈕
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -71,9 +62,7 @@ class ResultPage extends StatelessWidget {
                   backgroundColor: Colors.cyanAccent,
                   foregroundColor: Colors.black,
                 ),
-                onPressed: () {
-                  Navigator.pop(context); // 回上一頁（相機或預覽）
-                },
+                onPressed: () => Navigator.pop(context),
                 child: const Text("返回"),
               ),
             ),
@@ -83,3 +72,5 @@ class ResultPage extends StatelessWidget {
     );
   }
 }
+
+
