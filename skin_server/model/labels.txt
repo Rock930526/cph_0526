@@ -1,23 +1,22 @@
-Acne - Акне (угревая сыпь)  
-Actinic Keratosis - Актинический кератоз  
-Benign Tumors - Доброкачественные опухоли  
-Bullous - Буллезные заболевания  
-Candidiasis - Кандидоз  
-Drug Eruption - Лекарственная сыпь  
-Eczema - Экзема  
-Infestations/Bites - Паразитарные инфекции / укусы  
-Lichen - Лишай  
-Lupus - Волчанка  
-Moles - Родинки  
-Psoriasis - Псориаз  
-Rosacea - Розацеа (розовые угри)  
-Seborrheic Keratoses - Себорейный кератоз  
-Skin Cancer - Рак кожи  
-Sun/Sunlight Damage - Повреждение кожи солнцем  
-Tinea - Грибковые инфекции кожи (Тинея)  
-Unknown/Normal - Неизвестно / Норма  
-Vascular Tumors - Сосудистые опухоли  
-Vasculitis - Васкулит  
-Vitiligo - Витилиго  
-Warts - Бородавки  
-
+Acne - 痤瘡（青春痘）
+Actinic Keratosis - 光化性角化症
+Benign Tumors - 良性腫瘤
+Bullous - 水皰性疾病
+Candidiasis - 念珠菌感染
+Drug Eruption - 藥疹
+Eczema - 濕疹
+Infestations/Bites - 寄生蟲感染／昆蟲叮咬
+Lichen - 苔癬
+Lupus - 紅斑性狼瘡
+Moles - 痣
+Psoriasis - 乾癬
+Rosacea - 酒糟膚（玫瑰痤瘡）
+Seborrheic Keratoses - 脂漏性角化症
+Skin Cancer - 皮膚癌
+Sun/Sunlight Damage - 日光性皮膚損傷
+Tinea - 皮癬（黴菌感染）
+Unknown/Normal - 未知／正常皮膚
+Vascular Tumors - 血管性腫瘤
+Vasculitis - 血管炎
+Vitiligo - 白斑（白癜風）
+Warts - 疣

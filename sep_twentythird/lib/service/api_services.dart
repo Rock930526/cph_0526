@@ -113,7 +113,7 @@ String _buildPrompt(String summary, List<dynamic> top3, Map<String, dynamic> sur
   buffer.writeln("請務必根據使用者填寫的症狀描述為**主要判斷依據**，僅在無法判斷時參考模型外觀辨識結果。");
   //buffer.writeln("請用繁體中文作答，且每個疾病名稱請附上對應的中文翻譯（例如：Actinic Keratosis（日光性角化症）），如無對應中文則保留原文，並且輸出刪除多餘贅詞符號。");
   buffer.writeln("若模型預測結果與症狀不符，請明確指出原因並修正診斷順序。");
-  buffer.writeln("所有診斷皆需以**繁體中文**呈現，疾病名稱請附中文翻譯（例如：Actinic Keratosis（日光性角化症））。");
+  buffer.writeln("所有內容皆需以繁體中文呈現，疾病名稱請附中文翻譯（例如：Actinic Keratosis（日光性角化症））。");
 
   return buffer.toString();
 }
