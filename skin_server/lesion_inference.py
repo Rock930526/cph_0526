@@ -9,7 +9,7 @@ import os
 device = torch.device("cuda:0")  # ✅ 只用 GPU
 
 MODEL_PATH = "model/lesion_vit_scripted.pt"
-LABELS_PATH = "model/lesion_labels.txt"
+LABELS_PATH = "model/lession_labels.txt"
 
 assert os.path.exists(MODEL_PATH), f"找不到模型檔案: {MODEL_PATH}"
 lesion_model = torch.jit.load(MODEL_PATH, map_location="cuda:0").to(device)  # ✅ 放在 GPU
