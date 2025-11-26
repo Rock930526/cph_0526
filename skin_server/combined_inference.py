@@ -20,6 +20,33 @@ MALIGNANT = {"MEL", "BCC", "AKIEC"}
 OLLAMA_URL = "http://127.0.0.1:11434/api/generate"
 LLM_MODEL = "deepseek-r1:14b"
 
+# ---------------------------
+# 風險評估（新版：僅依病變模型）
+# ---------------------------
+def compute_risk_flag(lesion: dict) -> str:
+    """
+    根據病變模型 top3 中的惡性類別判斷風險。
+    完全不參考疾病分類模型，只看 SwinV2 病變特徵。
+    """
+    malignant_labels = {"MEL", "BCC", "AKIEC"}
+    top3 = lesion.get("top3", [])
+
+    highest_malignant_conf = 0.0
+
+    # 找出 top3 裡惡性類別的最高 confidence
+    for item in top3:
+        label = item.get("label", "")
+        conf = float(item.get("confidence", 0.0))
+        if label in malignant_labels:
+            highest_malignant_conf = max(highest_malignant_conf, conf)
+
+    # 回傳風險等級
+    if highest_malignant_conf >= 0.85:
+        return "🔴 高度懷疑惡性，建議儘速就醫"
+    elif highest_malignant_conf >= 0.70:
+        return "🟡 病灶有疑似惡性特徵"
+    else:
+        return "🟢 良性可能性高"
 
 # ------------------------------------------------------------
 # 工具：從 SwinV2 結果中只取一個 lesion top1（從 lesions 排序）
@@ -212,17 +239,8 @@ def predict_combined(
         lesion["top1"] = lesion_top1  # 補充寫回去方便前端或日後使用
 
         # 3️⃣ 惡性風險分析（沿用你原本邏輯）
-        risk_flag = "🟢 良性可能性高"
-        for item in lesion.get("top3", []):
-            label = item.get("label", "")
-            conf = item.get("confidence", 0)
-            if label in MALIGNANT:
-                if conf >= 0.85:
-                    risk_flag = "🔴 高度懷疑惡性，建議盡速就醫"
-                elif conf >= 0.70:
-                    risk_flag = "🟡 病灶有疑似惡性特徵，建議觀察或就醫"
-                else:
-                    risk_flag = "🟢 無明顯惡性特徵"
+        risk_flag = compute_risk_flag(lesion)
+        
 
         # 4️⃣ 模型端摘要（給第二階段用）
         lesion_names = [x["label"] for x in lesion.get("top3", [])]
