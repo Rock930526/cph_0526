@@ -46,7 +46,7 @@ Future<void> uploadImageAndSurvey(
       uri2,
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
-        "model": "llama3:8b",
+        "model": "phi4",
         "temperature": 0.7,
         "stream": false,
         "prompt": prompt,
