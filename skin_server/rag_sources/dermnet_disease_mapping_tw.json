@@ -1,0 +1,1826 @@
+{
+  "_version": "v4",
+  "items": [
+    {
+      "id": 0,
+      "term_en": "Fluorouracil cream",
+      "term_zh_raw": "氟尿嘧啶乳膏",
+      "term_zh_standard": "氟尿嘧啶乳膏",
+      "url": "https://dermnetnz.org/topics/5-fluorouracil-cream",
+      "synonyms_tw": []
+    },
+    {
+      "id": 1,
+      "term_en": "Acanthosis nigricans",
+      "term_zh_raw": "黑棘皮病",
+      "term_zh_standard": "黑棘皮病",
+      "url": "https://dermnetnz.org/topics/acanthosis-nigricans",
+      "synonyms_tw": []
+    },
+    {
+      "id": 2,
+      "term_en": "Achenbach syndrome",
+      "term_zh_raw": "阿亨巴赫綜合症",
+      "term_zh_standard": "阿亨巴赫綜合症",
+      "url": "https://dermnetnz.org/topics/achenbach-syndrome",
+      "synonyms_tw": []
+    },
+    {
+      "id": 3,
+      "term_en": "Acne",
+      "term_zh_raw": "粉刺",
+      "term_zh_standard": "痤瘡（青春痘）",
+      "url": "https://dermnetnz.org/topics/acne",
+      "synonyms_tw": [
+        "青春痘",
+        "痤瘡",
+        "粉刺"
+      ]
+    },
+    {
+      "id": 4,
+      "term_en": "Actinic keratosis",
+      "term_zh_raw": "光化性角化病",
+      "term_zh_standard": "光化性角化症（日光性角化症）",
+      "url": "https://dermnetnz.org/topics/actinic-keratosis",
+      "synonyms_tw": [
+        "光化性角化症",
+        "日光角化症",
+        "癌前病變角化症"
+      ]
+    },
+    {
+      "id": 5,
+      "term_en": "Adult-onset dermatomyositis",
+      "term_zh_raw": "成人發病的皮肌炎",
+      "term_zh_standard": "成人發病的皮肌炎",
+      "url": "https://dermnetnz.org/topics/adult-onset-dermatomyositis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 6,
+      "term_en": "Allergic contact dermatitis",
+      "term_zh_raw": "過敏性接觸性皮炎",
+      "term_zh_standard": "過敏性接觸性皮膚炎",
+      "url": "https://dermnetnz.org/topics/allergic-contact-dermatitis",
+      "synonyms_tw": [
+        "過敏性接觸性皮膚炎"
+      ]
+    },
+    {
+      "id": 7,
+      "term_en": "Alopecia areata",
+      "term_zh_raw": "斑禿",
+      "term_zh_standard": "圓禿（鬼剃頭）",
+      "url": "https://dermnetnz.org/topics/alopecia-areata",
+      "synonyms_tw": [
+        "圓禿"
+      ]
+    },
+    {
+      "id": 8,
+      "term_en": "Angular cheilitis",
+      "term_zh_raw": "口角炎",
+      "term_zh_standard": "口角炎",
+      "url": "https://dermnetnz.org/topics/angular-cheilitis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 9,
+      "term_en": "Aphthous ulcer",
+      "term_zh_raw": "口瘡性潰瘍",
+      "term_zh_standard": "口瘡性潰瘍",
+      "url": "https://dermnetnz.org/topics/aphthous-ulcer",
+      "synonyms_tw": []
+    },
+    {
+      "id": 10,
+      "term_en": "Athlete's foot",
+      "term_zh_raw": "香港腳",
+      "term_zh_standard": "香港腳",
+      "url": "https://dermnetnz.org/topics/athletes-foot",
+      "synonyms_tw": []
+    },
+    {
+      "id": 11,
+      "term_en": "Atopic dermatitis",
+      "term_zh_raw": "特應性皮炎",
+      "term_zh_standard": "異位性皮膚炎",
+      "url": "https://dermnetnz.org/topics/atopic-dermatitis",
+      "synonyms_tw": [
+        "異位性皮膚炎",
+        "異位性濕疹"
+      ]
+    },
+    {
+      "id": 12,
+      "term_en": "Bacterial skin infections",
+      "term_zh_raw": "細菌性皮膚感染",
+      "term_zh_standard": "細菌性皮膚感染",
+      "url": "https://dermnetnz.org/topics/bacterial-skin-infections",
+      "synonyms_tw": []
+    },
+    {
+      "id": 13,
+      "term_en": "Balanitis",
+      "term_zh_raw": "龜頭炎",
+      "term_zh_standard": "龜頭炎",
+      "url": "https://dermnetnz.org/topics/balanitis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 14,
+      "term_en": "Basal cell carcinoma",
+      "term_zh_raw": "基底細胞癌",
+      "term_zh_standard": "基底細胞癌",
+      "url": "https://dermnetnz.org/topics/basal-cell-carcinoma",
+      "synonyms_tw": [
+        "基底細胞癌"
+      ]
+    },
+    {
+      "id": 15,
+      "term_en": "Behçet disease",
+      "term_zh_raw": "白塞病",
+      "term_zh_standard": "白塞病",
+      "url": "https://dermnetnz.org/topics/behcet-disease",
+      "synonyms_tw": []
+    },
+    {
+      "id": 16,
+      "term_en": "Common benign skin lesions",
+      "term_zh_raw": "常見的良性皮膚病變",
+      "term_zh_standard": "常見的良性皮膚病變",
+      "url": "https://dermnetnz.org/topics/benign-skin-lesions",
+      "synonyms_tw": []
+    },
+    {
+      "id": 17,
+      "term_en": "Blistering skin conditions",
+      "term_zh_raw": "起泡性皮膚疾病",
+      "term_zh_standard": "起泡性皮膚疾病",
+      "url": "https://dermnetnz.org/topics/blistering-skin-conditions",
+      "synonyms_tw": []
+    },
+    {
+      "id": 18,
+      "term_en": "Blue naevus",
+      "term_zh_raw": "藍痣",
+      "term_zh_standard": "藍痣",
+      "url": "https://dermnetnz.org/topics/blue-naevus",
+      "synonyms_tw": []
+    },
+    {
+      "id": 19,
+      "term_en": "Boil",
+      "term_zh_raw": "癤（癤子、癰）",
+      "term_zh_standard": "癤（癤子、癰）",
+      "url": "https://dermnetnz.org/topics/boil",
+      "synonyms_tw": []
+    },
+    {
+      "id": 20,
+      "term_en": "Bromhidrosis",
+      "term_zh_raw": "狐臭",
+      "term_zh_standard": "狐臭",
+      "url": "https://dermnetnz.org/topics/bromhidrosis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 21,
+      "term_en": "Bullous pemphigoid",
+      "term_zh_raw": "大疱性類天疱瘡",
+      "term_zh_standard": "大疱性類天疱瘡",
+      "url": "https://dermnetnz.org/topics/bullous-pemphigoid",
+      "synonyms_tw": []
+    },
+    {
+      "id": 22,
+      "term_en": "Capillaritis",
+      "term_zh_raw": "毛細血管炎",
+      "term_zh_standard": "毛細血管炎",
+      "url": "https://dermnetnz.org/topics/capillaritis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 23,
+      "term_en": "Cat scratch disease",
+      "term_zh_raw": "貓抓病",
+      "term_zh_standard": "貓抓病",
+      "url": "https://dermnetnz.org/topics/catscratch-disease",
+      "synonyms_tw": []
+    },
+    {
+      "id": 24,
+      "term_en": "Cellulitis",
+      "term_zh_raw": "蜂窩織炎",
+      "term_zh_standard": "蜂窩織炎",
+      "url": "https://dermnetnz.org/topics/cellulitis",
+      "synonyms_tw": ["蜂窩性組織炎"]
+    },
+    {
+      "id": 25,
+      "term_en": "Cherry angioma",
+      "term_zh_raw": "櫻桃狀血管瘤",
+      "term_zh_standard": "櫻桃狀血管瘤",
+      "url": "https://dermnetnz.org/topics/cherry-angioma",
+      "synonyms_tw": []
+    },
+    {
+      "id": 26,
+      "term_en": "Chickenpox",
+      "term_zh_raw": "水痘",
+      "term_zh_standard": "水痘",
+      "url": "https://dermnetnz.org/topics/chickenpox",
+      "synonyms_tw": []
+    },
+    {
+      "id": 27,
+      "term_en": "Chilblains",
+      "term_zh_raw": "凍瘡",
+      "term_zh_standard": "凍瘡",
+      "url": "https://dermnetnz.org/topics/chilblains",
+      "synonyms_tw": []
+    },
+    {
+      "id": 28,
+      "term_en": "Chondrodermatitis nodularis",
+      "term_zh_raw": "結節性軟骨皮炎",
+      "term_zh_standard": "結節性軟骨皮膚炎",
+      "url": "https://dermnetnz.org/topics/chondrodermatitis-nodularis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 29,
+      "term_en": "Comedonal acne",
+      "term_zh_raw": "粉刺性痤瘡",
+      "term_zh_standard": "粉刺性痤瘡",
+      "url": "https://dermnetnz.org/topics/comedonal-acne",
+      "synonyms_tw": []
+    },
+    {
+      "id": 30,
+      "term_en": "Cryotherapy",
+      "term_zh_raw": "冷凍療法",
+      "term_zh_standard": "冷凍療法",
+      "url": "https://dermnetnz.org/topics/cryotherapy",
+      "synonyms_tw": []
+    },
+    {
+      "id": 31,
+      "term_en": "Cutaneous horn",
+      "term_zh_raw": "皮角",
+      "term_zh_standard": "皮角",
+      "url": "https://dermnetnz.org/topics/cutaneous-horn",
+      "synonyms_tw": []
+    },
+    {
+      "id": 32,
+      "term_en": "Cutaneous lupus erythematosus",
+      "term_zh_raw": "皮膚紅斑狼瘡",
+      "term_zh_standard": "皮膚紅斑性狼瘡",
+      "url": "https://dermnetnz.org/topics/cutaneous-lupus-erythematosus",
+      "synonyms_tw": [
+        "皮膚紅斑性狼瘡"
+      ]
+    },
+    {
+      "id": 33,
+      "term_en": "Cutaneous vasculitis",
+      "term_zh_raw": "皮膚血管炎",
+      "term_zh_standard": "皮膚血管炎",
+      "url": "https://dermnetnz.org/topics/cutaneous-vasculitis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 34,
+      "term_en": "Darier disease",
+      "term_zh_raw": "毛里爾病",
+      "term_zh_standard": "毛里爾病",
+      "url": "https://dermnetnz.org/topics/darier-disease",
+      "synonyms_tw": []
+    },
+    {
+      "id": 35,
+      "term_en": "Dermatitis",
+      "term_zh_raw": "皮炎",
+      "term_zh_standard": "皮膚炎",
+      "url": "https://dermnetnz.org/topics/dermatitis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 36,
+      "term_en": "Dermatitis herpetiformis",
+      "term_zh_raw": "皰疹樣皮炎",
+      "term_zh_standard": "皰疹樣皮膚炎",
+      "url": "https://dermnetnz.org/topics/dermatitis-herpetiformis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 37,
+      "term_en": "Dermatofibroma",
+      "term_zh_raw": "皮膚纖維瘤",
+      "term_zh_standard": "皮膚纖維瘤",
+      "url": "https://dermnetnz.org/topics/dermatofibroma",
+      "synonyms_tw": []
+    },
+    {
+      "id": 38,
+      "term_en": "Dermographism",
+      "term_zh_raw": "皮膚划痕症",
+      "term_zh_standard": "皮膚划痕症",
+      "url": "https://dermnetnz.org/topics/dermographism",
+      "synonyms_tw": []
+    },
+    {
+      "id": 39,
+      "term_en": "Digital myxoid pseudocyst",
+      "term_zh_raw": "指狀粘液樣假性囊腫",
+      "term_zh_standard": "指狀粘液樣假性囊腫",
+      "url": "https://dermnetnz.org/topics/digital-myxoid-pseudocyst",
+      "synonyms_tw": []
+    },
+    {
+      "id": 40,
+      "term_en": "Discoid eczema",
+      "term_zh_raw": "盤狀濕疹",
+      "term_zh_standard": "盤狀濕疹",
+      "url": "https://dermnetnz.org/topics/discoid-eczema",
+      "synonyms_tw": []
+    },
+    {
+      "id": 41,
+      "term_en": "Discoid lupus erythematosus",
+      "term_zh_raw": "盤狀紅斑狼瘡",
+      "term_zh_standard": "盤狀紅斑性狼瘡",
+      "url": "https://dermnetnz.org/topics/discoid-lupus-erythematosus",
+      "synonyms_tw": [
+        "盤狀紅斑性狼瘡"
+      ]
+    },
+    {
+      "id": 42,
+      "term_en": "Drug hypersensitivity syndrome",
+      "term_zh_raw": "藥物過敏綜合徵",
+      "term_zh_standard": "藥物過敏綜合徵",
+      "url": "https://dermnetnz.org/topics/drug-hypersensitivity-syndrome",
+      "synonyms_tw": []
+    },
+    {
+      "id": 43,
+      "term_en": "Dyshidrotic eczema (pompholyx)",
+      "term_zh_raw": "出汗不良性濕疹（汗皰疹）",
+      "term_zh_standard": "出汗不良性濕疹（汗皰疹）",
+      "url": "https://dermnetnz.org/topics/dyshidrotic-eczema",
+      "synonyms_tw": []
+    },
+    {
+      "id": 45,
+      "term_en": "Eczema herpeticum",
+      "term_zh_raw": "皰疹性濕疹",
+      "term_zh_standard": "皰疹性濕疹",
+      "url": "https://dermnetnz.org/topics/eczema-herpeticum",
+      "synonyms_tw": []
+    },
+    {
+      "id": 46,
+      "term_en": "Emollients and moisturisers",
+      "term_zh_raw": "潤膚劑和保濕劑",
+      "term_zh_standard": "潤膚劑和保濕劑",
+      "url": "https://dermnetnz.org/topics/emollients-and-moisturisers",
+      "synonyms_tw": []
+    },
+    {
+      "id": 47,
+      "term_en": "Epidermoid cyst",
+      "term_zh_raw": "表皮樣囊腫",
+      "term_zh_standard": "表皮樣囊腫",
+      "url": "https://dermnetnz.org/topics/epidermoid-cyst",
+      "synonyms_tw": []
+    },
+    {
+      "id": 48,
+      "term_en": "Erythema annulare centrifugum",
+      "term_zh_raw": "離心性環狀紅斑",
+      "term_zh_standard": "離心性環狀紅斑",
+      "url": "https://dermnetnz.org/topics/erythema-annulare-centrifugum",
+      "synonyms_tw": []
+    },
+    {
+      "id": 49,
+      "term_en": "Erythema multiforme",
+      "term_zh_raw": "多形紅斑",
+      "term_zh_standard": "多形紅斑",
+      "url": "https://dermnetnz.org/topics/erythema-multiforme",
+      "synonyms_tw": []
+    },
+    {
+      "id": 50,
+      "term_en": "Erythema nodosum",
+      "term_zh_raw": "結節性紅斑",
+      "term_zh_standard": "結節性紅斑",
+      "url": "https://dermnetnz.org/topics/erythema-nodosum",
+      "synonyms_tw": []
+    },
+    {
+      "id": 51,
+      "term_en": "Erythrasma",
+      "term_zh_raw": "紅癬",
+      "term_zh_standard": "紅癬",
+      "url": "https://dermnetnz.org/topics/erythrasma",
+      "synonyms_tw": []
+    },
+    {
+      "id": 52,
+      "term_en": "Erythroderma",
+      "term_zh_raw": "紅皮病",
+      "term_zh_standard": "紅皮病",
+      "url": "https://dermnetnz.org/topics/erythroderma",
+      "synonyms_tw": []
+    },
+    {
+      "id": 53,
+      "term_en": "Exanthems",
+      "term_zh_raw": "急症",
+      "term_zh_standard": "急症",
+      "url": "https://dermnetnz.org/topics/exanthems",
+      "synonyms_tw": []
+    },
+    {
+      "id": 54,
+      "term_en": "Facial rashes",
+      "term_zh_raw": "面部皮疹",
+      "term_zh_standard": "面部皮疹",
+      "url": "https://dermnetnz.org/topics/facial-rashes",
+      "synonyms_tw": []
+    },
+    {
+      "id": 55,
+      "term_en": "Female pattern hair loss",
+      "term_zh_raw": "女性型脫髮",
+      "term_zh_standard": "女性型脫髮",
+      "url": "https://dermnetnz.org/topics/female-pattern-hair-loss",
+      "synonyms_tw": []
+    },
+    {
+      "id": 56,
+      "term_en": "Fixed drug eruption",
+      "term_zh_raw": "固定性藥疹",
+      "term_zh_standard": "固定性藥疹",
+      "url": "https://dermnetnz.org/topics/fixed-drug-eruption",
+      "synonyms_tw": []
+    },
+    {
+      "id": 57,
+      "term_en": "Folliculitis",
+      "term_zh_raw": "毛囊炎",
+      "term_zh_standard": "毛囊炎",
+      "url": "https://dermnetnz.org/topics/folliculitis",
+      "synonyms_tw": [
+        "毛囊炎"
+      ]
+    },
+    {
+      "id": 58,
+      "term_en": "Folliculitis barbae",
+      "term_zh_raw": "須部毛囊炎",
+      "term_zh_standard": "須部毛囊炎",
+      "url": "https://dermnetnz.org/topics/folliculitis-barbae",
+      "synonyms_tw": []
+    },
+    {
+      "id": 59,
+      "term_en": "Folliculitis decalvans",
+      "term_zh_raw": "脫髮性毛囊炎",
+      "term_zh_standard": "脫髮性毛囊炎",
+      "url": "https://dermnetnz.org/topics/folliculitis-decalvans",
+      "synonyms_tw": []
+    },
+    {
+      "id": 61,
+      "term_en": "Fungal nail infections",
+      "term_zh_raw": "指甲真菌感染",
+      "term_zh_standard": "指甲真菌感染",
+      "url": "https://dermnetnz.org/topics/fungal-nail-infections",
+      "synonyms_tw": []
+    },
+    {
+      "id": 62,
+      "term_en": "Fungal skin infections",
+      "term_zh_raw": "皮膚真菌感染",
+      "term_zh_standard": "皮膚真菌感染",
+      "url": "https://dermnetnz.org/topics/fungal-skin-infections",
+      "synonyms_tw": []
+    },
+    {
+      "id": 63,
+      "term_en": "Generalised pustular psoriasis",
+      "term_zh_raw": "泛發性膿皰型銀屑病",
+      "term_zh_standard": "泛發性膿皰型銀屑病",
+      "url": "https://dermnetnz.org/topics/generalised-pustular-psoriasis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 64,
+      "term_en": "Genital herpes",
+      "term_zh_raw": "生殖器皰疹",
+      "term_zh_standard": "生殖器疱疹",
+      "url": "https://dermnetnz.org/topics/genital-herpes",
+      "synonyms_tw": [
+        "生殖器疱疹"
+      ]
+    },
+    {
+      "id": 65,
+      "term_en": "Genital psoriasis",
+      "term_zh_raw": "生殖器牛皮癬",
+      "term_zh_standard": "生殖器牛皮癬",
+      "url": "https://dermnetnz.org/topics/genital-psoriasis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 66,
+      "term_en": "Genital skin problems",
+      "term_zh_raw": "生殖器皮膚問題",
+      "term_zh_standard": "生殖器皮膚問題",
+      "url": "https://dermnetnz.org/topics/genital-skin-problems",
+      "synonyms_tw": []
+    },
+    {
+      "id": 67,
+      "term_en": "Geographic tongue",
+      "term_zh_raw": "地理舌",
+      "term_zh_standard": "地理舌",
+      "url": "https://dermnetnz.org/topics/geographic-tongue",
+      "synonyms_tw": ["地圖舌"]
+    },
+    {
+      "id": 68,
+      "term_en": "Granular parakeratosis",
+      "term_zh_raw": "顆粒狀角化不全",
+      "term_zh_standard": "顆粒狀角化不全",
+      "url": "https://dermnetnz.org/topics/granular-parakeratosis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 69,
+      "term_en": "Granuloma annulare",
+      "term_zh_raw": "環狀肉芽腫",
+      "term_zh_standard": "環狀肉芽腫",
+      "url": "https://dermnetnz.org/topics/granuloma-annulare",
+      "synonyms_tw": []
+    },
+    {
+      "id": 70,
+      "term_en": "Granulomatous cheilitis",
+      "term_zh_raw": "肉芽腫性唇炎",
+      "term_zh_standard": "肉芽腫性唇炎",
+      "url": "https://dermnetnz.org/topics/granulomatous-cheilitis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 71,
+      "term_en": "Granulomatous dermatitis",
+      "term_zh_raw": "肉芽腫性皮炎",
+      "term_zh_standard": "肉芽腫性皮膚炎",
+      "url": "https://dermnetnz.org/topics/granulomatous-dermatitis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 72,
+      "term_en": "Guttate psoriasis",
+      "term_zh_raw": "點滴狀銀屑病",
+      "term_zh_standard": "點滴狀銀屑病",
+      "url": "https://dermnetnz.org/topics/guttate-psoriasis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 73,
+      "term_en": "Hair loss",
+      "term_zh_raw": "脫髮",
+      "term_zh_standard": "脫髮",
+      "url": "https://dermnetnz.org/topics/hair-loss",
+      "synonyms_tw": []
+    },
+    {
+      "id": 74,
+      "term_en": "Halo naevus",
+      "term_zh_raw": "暈痣",
+      "term_zh_standard": "暈痣",
+      "url": "https://dermnetnz.org/topics/halo-naevus",
+      "synonyms_tw": []
+    },
+    {
+      "id": 75,
+      "term_en": "Hand dermatitis",
+      "term_zh_raw": "手部皮炎",
+      "term_zh_standard": "手部皮膚炎",
+      "url": "https://dermnetnz.org/topics/hand-dermatitis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 76,
+      "term_en": "Hand, foot, and mouth disease",
+      "term_zh_raw": "手足口病",
+      "term_zh_standard": "手足口病",
+      "url": "https://dermnetnz.org/topics/hand-foot-and-mouth-disease",
+      "synonyms_tw": []
+    },
+    {
+      "id": 77,
+      "term_en": "Heberden and Bouchard nodes",
+      "term_zh_raw": "赫伯登和布沙爾節點",
+      "term_zh_standard": "赫伯登和布沙爾節點",
+      "url": "https://dermnetnz.org/topics/heberden-bouchard-nodes",
+      "synonyms_tw": []
+    },
+    {
+      "id": 78,
+      "term_en": "Henoch–Schönlein purpura",
+      "term_zh_raw": "過敏性紫癜",
+      "term_zh_standard": "過敏性紫癜",
+      "url": "https://dermnetnz.org/topics/henoch-schoenlein-purpura",
+      "synonyms_tw": []
+    },
+    {
+      "id": 79,
+      "term_en": "Herpes simplex",
+      "term_zh_raw": "單純皰疹",
+      "term_zh_standard": "單純皰疹",
+      "url": "https://dermnetnz.org/topics/herpes-simplex",
+      "synonyms_tw": [
+        "單純疱疹",
+        "單純皰疹"
+      ]
+    },
+    {
+      "id": 80,
+      "term_en": "Herpes zoster",
+      "term_zh_raw": "帶狀皰疹",
+      "term_zh_standard": "帶狀皰疹",
+      "url": "https://dermnetnz.org/topics/herpes-zoster",
+      "synonyms_tw": [
+        "帶狀皰疹"
+      ]
+    },
+    {
+      "id": 81,
+      "term_en": "Herpetic whitlow",
+      "term_zh_raw": "皰疹瘭疽",
+      "term_zh_standard": "皰疹瘭疽",
+      "url": "https://dermnetnz.org/topics/herpetic-whitlow",
+      "synonyms_tw": []
+    },
+    {
+      "id": 82,
+      "term_en": "Hidradenitis suppurativa",
+      "term_zh_raw": "化膿性汗腺炎",
+      "term_zh_standard": "化膿性汗腺炎",
+      "url": "https://dermnetnz.org/topics/hidradenitis-suppurativa",
+      "synonyms_tw": []
+    },
+    {
+      "id": 83,
+      "term_en": "Hyperhidrosis",
+      "term_zh_raw": "多汗症",
+      "term_zh_standard": "多汗症",
+      "url": "https://dermnetnz.org/topics/hyperhidrosis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 84,
+      "term_en": "Idiopathic guttate hypomelanosis",
+      "term_zh_raw": "特發性點滴狀黑色素減少症",
+      "term_zh_standard": "特發性點滴狀黑色素減少症",
+      "url": "https://dermnetnz.org/topics/idiopathic-guttate-hypomelanosis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 85,
+      "term_en": "Immunoglobulin E tests",
+      "term_zh_raw": "免疫球蛋白E測試",
+      "term_zh_standard": "免疫球蛋白E測試",
+      "url": "https://dermnetnz.org/topics/immunoglobulin-e-tests",
+      "synonyms_tw": []
+    },
+    {
+      "id": 86,
+      "term_en": "Impetigo",
+      "term_zh_raw": "膿皰瘡",
+      "term_zh_standard": "膿痂疹",
+      "url": "https://dermnetnz.org/topics/impetigo",
+      "synonyms_tw": [
+        "膿痂疹"
+      ]
+    },
+    {
+      "id": 87,
+      "term_en": "Infantile haemangioma: Definition and pathogenesis",
+      "term_zh_raw": "嬰兒血管瘤：定義和發病機制",
+      "term_zh_standard": "嬰兒血管瘤：定義和發病機制",
+      "url": "https://dermnetnz.org/topics/infantile-haemangioma-definition-and-pathogenesis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 88,
+      "term_en": "Infectious mononucleosis",
+      "term_zh_raw": "傳染性單核細胞增多症",
+      "term_zh_standard": "傳染性單核細胞增多症",
+      "url": "https://dermnetnz.org/topics/infectious-mononucleosis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 89,
+      "term_en": "Intertrigo",
+      "term_zh_raw": "間摩擦",
+      "term_zh_standard": "間摩擦",
+      "url": "https://dermnetnz.org/topics/intertrigo",
+      "synonyms_tw": []
+    },
+    {
+      "id": 90,
+      "term_en": "Intraepidermal squamous cell carcinoma",
+      "term_zh_raw": "表皮內鱗狀細胞癌",
+      "term_zh_standard": "表皮內鱗狀細胞癌",
+      "url": "https://dermnetnz.org/topics/intraepidermal-squamous-cell-carcinoma",
+      "synonyms_tw": []
+    },
+    {
+      "id": 91,
+      "term_en": "Intralesional steroid injection",
+      "term_zh_raw": "病灶內類固醇注射",
+      "term_zh_standard": "病灶內類固醇注射",
+      "url": "https://dermnetnz.org/topics/intralesional-steroid-injection",
+      "synonyms_tw": []
+    },
+    {
+      "id": 92,
+      "term_en": "Irritant contact dermatitis",
+      "term_zh_raw": "刺激性接觸性皮炎",
+      "term_zh_standard": "刺激性接觸性皮膚炎",
+      "url": "https://dermnetnz.org/topics/irritant-contact-dermatitis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 93,
+      "term_en": "Isotretinoin",
+      "term_zh_raw": "異維 A 酸",
+      "term_zh_standard": "異維 A 酸",
+      "url": "https://dermnetnz.org/topics/isotretinoin",
+      "synonyms_tw": []
+    },
+    {
+      "id": 94,
+      "term_en": "Janus kinase inhibitors",
+      "term_zh_raw": "Janus 激酶抑制劑",
+      "term_zh_standard": "Janus 激酶抑制劑",
+      "url": "https://dermnetnz.org/topics/janus-kinase-inhibitors",
+      "synonyms_tw": []
+    },
+    {
+      "id": 95,
+      "term_en": "Jessner lymphocytic infiltrate",
+      "term_zh_raw": "Jessner淋巴細胞浸潤",
+      "term_zh_standard": "Jessner淋巴細胞浸潤",
+      "url": "https://dermnetnz.org/topics/jessner-lymphocytic-infiltrate",
+      "synonyms_tw": []
+    },
+    {
+      "id": 96,
+      "term_en": "Jewellery allergy",
+      "term_zh_raw": "珠寶過敏",
+      "term_zh_standard": "珠寶過敏",
+      "url": "https://dermnetnz.org/topics/jewellery-allergy",
+      "synonyms_tw": []
+    },
+    {
+      "id": 97,
+      "term_en": "Job syndrome",
+      "term_zh_raw": "工作綜合症",
+      "term_zh_standard": "工作綜合症",
+      "url": "https://dermnetnz.org/topics/job-syndrome",
+      "synonyms_tw": []
+    },
+    {
+      "id": 98,
+      "term_en": "Juvenile dermatomyositis",
+      "term_zh_raw": "幼年型皮肌炎",
+      "term_zh_standard": "幼年型皮肌炎",
+      "url": "https://dermnetnz.org/topics/juvenile-dermatomyositis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 99,
+      "term_en": "Juvenile idiopathic arthritis",
+      "term_zh_raw": "幼年特發性關節炎",
+      "term_zh_standard": "幼年特發性關節炎",
+      "url": "https://dermnetnz.org/topics/juvenile-idiopathic-arthritis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 100,
+      "term_en": "Juvenile plantar dermatosis",
+      "term_zh_raw": "青少年足底皮膚病",
+      "term_zh_standard": "青少年足底皮膚病",
+      "url": "https://dermnetnz.org/topics/juvenile-plantar-dermatosis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 101,
+      "term_en": "Juvenile spring eruption",
+      "term_zh_raw": "少年春季噴發",
+      "term_zh_standard": "多形性日光疹",
+      "url": "https://dermnetnz.org/topics/juvenile-spring-eruption",
+      "synonyms_tw": ["青少年春季疹"]
+    },
+    {
+      "id": 102,
+      "term_en": "Juvenile xanthogranuloma",
+      "term_zh_raw": "幼年型黃色肉芽腫",
+      "term_zh_standard": "幼年型黃色肉芽腫",
+      "url": "https://dermnetnz.org/topics/juvenile-xanthogranuloma",
+      "synonyms_tw": []
+    },
+    {
+      "id": 103,
+      "term_en": "Juvenile xanthogranuloma pathology",
+      "term_zh_raw": "幼年黃色肉芽腫病理",
+      "term_zh_standard": "幼年黃色肉芽腫病理",
+      "url": "https://dermnetnz.org/topics/juvenile-xanthogranuloma-pathology",
+      "synonyms_tw": []
+    },
+    {
+      "id": 104,
+      "term_en": "Kaposi sarcoma",
+      "term_zh_raw": "卡波西肉瘤",
+      "term_zh_standard": "卡波西肉瘤",
+      "url": "https://dermnetnz.org/topics/kaposi-sarcoma",
+      "synonyms_tw": []
+    },
+    {
+      "id": 105,
+      "term_en": "Kawasaki disease",
+      "term_zh_raw": "川崎病",
+      "term_zh_standard": "川崎病",
+      "url": "https://dermnetnz.org/topics/kawasaki-disease",
+      "synonyms_tw": []
+    },
+    {
+      "id": 106,
+      "term_en": "Keloid and hypertrophic scar",
+      "term_zh_raw": "瘢痕疙瘩和增生性疤痕",
+      "term_zh_standard": "瘢痕疙瘩和增生性疤痕",
+      "url": "https://dermnetnz.org/topics/keloid-and-hypertrophic-scar",
+      "synonyms_tw": []
+    },
+    {
+      "id": 107,
+      "term_en": "Keratoacanthoma",
+      "term_zh_raw": "角化棘皮瘤",
+      "term_zh_standard": "角化棘皮瘤",
+      "url": "https://dermnetnz.org/topics/keratoacanthoma",
+      "synonyms_tw": []
+    },
+    {
+      "id": 108,
+      "term_en": "Keratolysis exfoliativa",
+      "term_zh_raw": "剝脫性角質松解症",
+      "term_zh_standard": "剝脫性角質松解症",
+      "url": "https://dermnetnz.org/topics/keratolysis-exfoliativa",
+      "synonyms_tw": []
+    },
+    {
+      "id": 109,
+      "term_en": "Keratosis pilaris",
+      "term_zh_raw": "毛周角化症",
+      "term_zh_standard": "毛周角化症",
+      "url": "https://dermnetnz.org/topics/keratosis-pilaris",
+      "synonyms_tw": []
+    },
+    {
+      "id": 110,
+      "term_en": "Keratosis pilaris atrophicans faciei",
+      "term_zh_raw": "面部萎縮性毛周角化病",
+      "term_zh_standard": "面部萎縮性毛周角化病",
+      "url": "https://dermnetnz.org/topics/keratosis-pilaris-atrophicans-faciei",
+      "synonyms_tw": []
+    },
+    {
+      "id": 111,
+      "term_en": "Kerion",
+      "term_zh_raw": "膿癬（Kerion）",
+      "term_zh_standard": "膿癬（Kerion）",
+      "url": "https://dermnetnz.org/topics/kerion",
+      "synonyms_tw": []
+    },
+    {
+      "id": 112,
+      "term_en": "Knuckle pad",
+      "term_zh_raw": "指關節墊",
+      "term_zh_standard": "指關節墊",
+      "url": "https://dermnetnz.org/topics/knuckle-pads",
+      "synonyms_tw": []
+    },
+    {
+      "id": 113,
+      "term_en": "KTP laser treatment",
+      "term_zh_raw": "KTP 激光治療",
+      "term_zh_standard": "KTP 激光治療",
+      "url": "https://dermnetnz.org/topics/ktp-laser-treatment",
+      "synonyms_tw": []
+    },
+    {
+      "id": 115,
+      "term_en": "Lentigo",
+      "term_zh_raw": "雀斑",
+      "term_zh_standard": "雀斑",
+      "url": "https://dermnetnz.org/topics/lentigo",
+      "synonyms_tw": []
+    },
+    {
+      "id": 116,
+      "term_en": "Lentigo maligna and lentigo maligna melanoma",
+      "term_zh_raw": "惡性雀斑與惡性雀斑黑色素瘤",
+      "term_zh_standard": "惡性雀斑與惡性雀斑黑色素瘤",
+      "url": "https://dermnetnz.org/topics/lentigo-maligna-and-lentigo-maligna-melanoma",
+      "synonyms_tw": []
+    },
+    {
+      "id": 117,
+      "term_en": "Lichen planopilaris",
+      "term_zh_raw": "扁平苔蘚",
+      "term_zh_standard": "扁平苔蘚",
+      "url": "https://dermnetnz.org/topics/lichen-planopilaris",
+      "synonyms_tw": []
+    },
+    {
+      "id": 118,
+      "term_en": "Lichen planus",
+      "term_zh_raw": "扁平苔蘚",
+      "term_zh_standard": "扁平苔蘚",
+      "url": "https://dermnetnz.org/topics/lichen-planus",
+      "synonyms_tw": []
+    },
+    {
+      "id": 119,
+      "term_en": "Lichen sclerosus",
+      "term_zh_raw": "硬化性地衣",
+      "term_zh_standard": "硬化性地衣",
+      "url": "https://dermnetnz.org/topics/lichen-sclerosus",
+      "synonyms_tw": []
+    },
+    {
+      "id": 120,
+      "term_en": "Lichen simplex",
+      "term_zh_raw": "單純地衣",
+      "term_zh_standard": "單純地衣",
+      "url": "https://dermnetnz.org/topics/lichen-simplex",
+      "synonyms_tw": []
+    },
+    {
+      "id": 121,
+      "term_en": "Lichenoid keratosis",
+      "term_zh_raw": "苔蘚樣角化病",
+      "term_zh_standard": "苔蘚樣角化病",
+      "url": "https://dermnetnz.org/topics/lichenoid-keratosis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 122,
+      "term_en": "Lip licker’s dermatitis",
+      "term_zh_raw": "舔唇者皮炎",
+      "term_zh_standard": "舔唇者皮膚炎",
+      "url": "https://dermnetnz.org/topics/lip-lickers-dermatitis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 123,
+      "term_en": "Lipodermatosclerosis",
+      "term_zh_raw": "脂性皮膚硬化症",
+      "term_zh_standard": "脂性皮膚硬化症",
+      "url": "https://dermnetnz.org/topics/lipodermatosclerosis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 124,
+      "term_en": "Livedo reticularis",
+      "term_zh_raw": "網狀青斑",
+      "term_zh_standard": "網狀青斑",
+      "url": "https://dermnetnz.org/topics/livedo-reticularis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 125,
+      "term_en": "Malassezia folliculitis",
+      "term_zh_raw": "馬拉色菌毛囊炎",
+      "term_zh_standard": "馬拉色菌毛囊炎",
+      "url": "https://dermnetnz.org/topics/malassezia-folliculitis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 126,
+      "term_en": "Measles",
+      "term_zh_raw": "麻疹",
+      "term_zh_standard": "麻疹",
+      "url": "https://dermnetnz.org/topics/measles",
+      "synonyms_tw": []
+    },
+    {
+      "id": 127,
+      "term_en": "Melanocytic naevus",
+      "term_zh_raw": "黑素細胞痣",
+      "term_zh_standard": "黑素細胞痣",
+      "url": "https://dermnetnz.org/topics/melanocytic-naevus",
+      "synonyms_tw": []
+    },
+    {
+      "id": 128,
+      "term_en": "Melanoma",
+      "term_zh_raw": "黑色素瘤",
+      "term_zh_standard": "黑色素瘤",
+      "url": "https://dermnetnz.org/topics/melanoma",
+      "synonyms_tw": []
+    },
+    {
+      "id": 129,
+      "term_en": "Melanonychia",
+      "term_zh_raw": "黑甲症（Melanonychia）",
+      "term_zh_standard": "黑甲症（Melanonychia）",
+      "url": "https://dermnetnz.org/topics/melanonychia",
+      "synonyms_tw": []
+    },
+    {
+      "id": 130,
+      "term_en": "Melasma",
+      "term_zh_raw": "黃褐斑",
+      "term_zh_standard": "黃褐斑",
+      "url": "https://dermnetnz.org/topics/melasma",
+      "synonyms_tw": []
+    },
+    {
+      "id": 131,
+      "term_en": "Miliaria",
+      "term_zh_raw": "痱子",
+      "term_zh_standard": "痱子",
+      "url": "https://dermnetnz.org/topics/miliaria",
+      "synonyms_tw": []
+    },
+    {
+      "id": 132,
+      "term_en": "Milium",
+      "term_zh_raw": "粟粒疹（Milium）",
+      "term_zh_standard": "粟粒疹（Milium）",
+      "url": "https://dermnetnz.org/topics/milium",
+      "synonyms_tw": []
+    },
+    {
+      "id": 133,
+      "term_en": "Molluscum contagiosum",
+      "term_zh_raw": "傳染性軟疣",
+      "term_zh_standard": "傳染性軟疣",
+      "url": "https://dermnetnz.org/topics/molluscum-contagiosum",
+      "synonyms_tw": [
+        "傳染性軟疣"
+      ]
+    },
+    {
+      "id": 134,
+      "term_en": "Morbilliform drug reaction",
+      "term_zh_raw": "麻疹樣藥物反應",
+      "term_zh_standard": "麻疹樣藥物反應",
+      "url": "https://dermnetnz.org/topics/morbilliform-drug-reaction",
+      "synonyms_tw": []
+    },
+    {
+      "id": 135,
+      "term_en": "Nail disorders",
+      "term_zh_raw": "指甲疾病",
+      "term_zh_standard": "指甲疾病",
+      "url": "https://dermnetnz.org/topics/nail-disorders",
+      "synonyms_tw": []
+    },
+    {
+      "id": 136,
+      "term_en": "Nail psoriasis",
+      "term_zh_raw": "指甲牛皮癬",
+      "term_zh_standard": "指甲牛皮癬",
+      "url": "https://dermnetnz.org/topics/nail-psoriasis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 137,
+      "term_en": "Napkin dermatitis",
+      "term_zh_raw": "餐巾皮炎",
+      "term_zh_standard": "尿布疹",
+      "url": "https://dermnetnz.org/topics/napkin-dermatitis",
+      "synonyms_tw": ["尿布疹","餐巾皮炎"]
+    },
+    {
+      "id": 138,
+      "term_en": "Necrobiosis lipoidica",
+      "term_zh_raw": "類脂壞死菌",
+      "term_zh_standard": "類脂壞死菌",
+      "url": "https://dermnetnz.org/topics/necrobiosis-lipoidica",
+      "synonyms_tw": []
+    },
+    {
+      "id": 139,
+      "term_en": "Necrotising fasciitis",
+      "term_zh_raw": "壞死性筋膜炎",
+      "term_zh_standard": "壞死性筋膜炎",
+      "url": "https://dermnetnz.org/topics/necrotising-fasciitis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 140,
+      "term_en": "Neonatal cephalic pustulosis",
+      "term_zh_raw": "新生兒頭部膿皰病",
+      "term_zh_standard": "新生兒頭部膿皰病",
+      "url": "https://dermnetnz.org/topics/neonatal-cephalic-pustulosis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 141,
+      "term_en": "Nicotinamide",
+      "term_zh_raw": "煙酰胺",
+      "term_zh_standard": "煙酰胺",
+      "url": "https://dermnetnz.org/topics/nicotinamide",
+      "synonyms_tw": []
+    },
+    {
+      "id": 142,
+      "term_en": "Nodular prurigo",
+      "term_zh_raw": "結節性癢疹",
+      "term_zh_standard": "結節性癢疹",
+      "url": "https://dermnetnz.org/topics/nodular-prurigo",
+      "synonyms_tw": []
+    },
+    {
+      "id": 143,
+      "term_en": "Nodulocystic acne",
+      "term_zh_raw": "結節性痤瘡",
+      "term_zh_standard": "結節性痤瘡",
+      "url": "https://dermnetnz.org/topics/nodulocystic-acne",
+      "synonyms_tw": []
+    },
+    {
+      "id": 144,
+      "term_en": "Notalgia paraesthetica",
+      "term_zh_raw": "感覺異常痛",
+      "term_zh_standard": "感覺異常性背部疼痛",
+      "url": "https://dermnetnz.org/topics/notalgia-paraesthetica",
+      "synonyms_tw": ["感覺異常性背部疼痛","感覺異常痛"]
+    },
+    {
+      "id": 145,
+      "term_en": "Onychogryphosis",
+      "term_zh_raw": "甲彎症",
+      "term_zh_standard": "甲癬",
+      "url": "https://dermnetnz.org/topics/onychogryphosis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 146,
+      "term_en": "Onycholysis",
+      "term_zh_raw": "甲剝離症",
+      "term_zh_standard": "甲剝離症",
+      "url": "https://dermnetnz.org/topics/onycholysis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 147,
+      "term_en": "Onychopapilloma",
+      "term_zh_raw": "甲乳頭狀瘤",
+      "term_zh_standard": "甲乳頭狀瘤",
+      "url": "https://dermnetnz.org/topics/onychopapilloma",
+      "synonyms_tw": []
+    },
+    {
+      "id": 148,
+      "term_en": "Oral antifungal medication",
+      "term_zh_raw": "口服抗真菌藥物",
+      "term_zh_standard": "口服抗真菌藥物",
+      "url": "https://dermnetnz.org/topics/oral-antifungal-medication",
+      "synonyms_tw": []
+    },
+    {
+      "id": 149,
+      "term_en": "Oral candidiasis",
+      "term_zh_raw": "口腔念珠菌病",
+      "term_zh_standard": "口腔念珠菌病",
+      "url": "https://dermnetnz.org/topics/oral-candidiasis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 150,
+      "term_en": "Oral irritated fibroma",
+      "term_zh_raw": "口腔刺激性纖維瘤",
+      "term_zh_standard": "口腔刺激性纖維瘤",
+      "url": "https://dermnetnz.org/topics/oral-irritated-fibroma",
+      "synonyms_tw": []
+    },
+    {
+      "id": 151,
+      "term_en": "Oral lichen planus",
+      "term_zh_raw": "口腔扁平苔蘚",
+      "term_zh_standard": "口腔扁平苔蘚",
+      "url": "https://dermnetnz.org/topics/oral-lichen-planus",
+      "synonyms_tw": []
+    },
+    {
+      "id": 152,
+      "term_en": "Orf",
+      "term_zh_raw": "奧爾夫（Orf 病）",
+      "term_zh_standard": "羊接觸傳染性化膿性口炎",
+      "url": "https://dermnetnz.org/topics/orf",
+      "synonyms_tw": ["農場痘","羊痘","傳染性化膿性皮膚炎"]
+    },
+    {
+      "id": 153,
+      "term_en": "Osler nodes and Janeway lesions",
+      "term_zh_raw": "奧斯勒結節與 Janeway 病變",
+      "term_zh_standard": "感染性心內膜炎",
+      "url": "https://dermnetnz.org/topics/osler-nodes-and-janeway-lesions",
+      "synonyms_tw": []
+    },
+    {
+      "id": 154,
+      "term_en": "Otitis externa",
+      "term_zh_raw": "外耳道炎",
+      "term_zh_standard": "外耳道炎",
+      "url": "https://dermnetnz.org/topics/otitis-externa",
+      "synonyms_tw": []
+    },
+    {
+      "id": 155,
+      "term_en": "Paronychia",
+      "term_zh_raw": "甲溝炎",
+      "term_zh_standard": "甲溝炎",
+      "url": "https://dermnetnz.org/topics/paronychia",
+      "synonyms_tw": []
+    },
+    {
+      "id": 156,
+      "term_en": "Patch tests",
+      "term_zh_raw": "斑貼測試",
+      "term_zh_standard": "斑貼測試",
+      "url": "https://dermnetnz.org/topics/patch-tests",
+      "synonyms_tw": ["接觸性皮膚炎的關鍵性診察，用來找出導致皮膚過敏的物質，方法是在患者背部貼上含有不同過敏原的貼布，並在特定時間後觀察皮膚反應。"]
+    },
+    {
+      "id": 157,
+      "term_en": "Periocular dermatitis",
+      "term_zh_raw": "眼周皮炎",
+      "term_zh_standard": "眼周皮膚炎",
+      "url": "https://dermnetnz.org/topics/periocular-dermatitis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 158,
+      "term_en": "Periorificial dermatitis",
+      "term_zh_raw": "口周皮炎",
+      "term_zh_standard": "口周皮膚炎",
+      "url": "https://dermnetnz.org/topics/periorificial-dermatitis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 159,
+      "term_en": "Pitted keratolysis",
+      "term_zh_raw": "凹陷性角質松解症",
+      "term_zh_standard": "凹陷性角質松解症",
+      "url": "https://dermnetnz.org/topics/pitted-keratolysis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 160,
+      "term_en": "Pityriasis alba",
+      "term_zh_raw": "白糠疹",
+      "term_zh_standard": "白糠疹",
+      "url": "https://dermnetnz.org/topics/pityriasis-alba",
+      "synonyms_tw": []
+    },
+    {
+      "id": 161,
+      "term_en": "Pityriasis lichenoides",
+      "term_zh_raw": "苔蘚樣糠疹",
+      "term_zh_standard": "苔蘚樣糠疹",
+      "url": "https://dermnetnz.org/topics/pityriasis-lichenoides",
+      "synonyms_tw": []
+    },
+    {
+      "id": 162,
+      "term_en": "Pityriasis rosea",
+      "term_zh_raw": "玫瑰糠疹",
+      "term_zh_standard": "玫瑰糠疹",
+      "url": "https://dermnetnz.org/topics/pityriasis-rosea",
+      "synonyms_tw": []
+    },
+    {
+      "id": 163,
+      "term_en": "Pityriasis versicolor",
+      "term_zh_raw": "花斑癬",
+      "term_zh_standard": "花斑癬",
+      "url": "https://dermnetnz.org/topics/pityriasis-versicolor",
+      "synonyms_tw": []
+    },
+    {
+      "id": 164,
+      "term_en": "Psoriasis",
+      "term_zh_raw": "牛皮癬",
+      "term_zh_standard": "乾癬",
+      "url": "https://dermnetnz.org/topics/psoriasis",
+      "synonyms_tw": [
+        "乾癬",
+        "牛皮癬"
+      ]
+    },
+    {
+      "id": 165,
+      "term_en": "Pyogenic granuloma",
+      "term_zh_raw": "化膿性肉芽腫",
+      "term_zh_standard": "化膿性肉芽腫",
+      "url": "https://dermnetnz.org/topics/pyogenic-granuloma",
+      "synonyms_tw": []
+    },
+    {
+      "id": 166,
+      "term_en": "Rashes affecting the lower legs",
+      "term_zh_raw": "影響小腿的皮疹",
+      "term_zh_standard": "影響小腿的皮疹",
+      "url": "https://dermnetnz.org/topics/rashes-affecting-the-lower-legs",
+      "synonyms_tw": []
+    },
+    {
+      "id": 167,
+      "term_en": "Raynaud phenomenon",
+      "term_zh_raw": "雷諾現象",
+      "term_zh_standard": "雷諾現象",
+      "url": "https://dermnetnz.org/topics/raynaud-phenomenon",
+      "synonyms_tw": []
+    },
+    {
+      "id": 168,
+      "term_en": "Reactive perforating collagenosis",
+      "term_zh_raw": "反應性穿孔性膠原病",
+      "term_zh_standard": "反應性穿孔性膠原病",
+      "url": "https://dermnetnz.org/topics/reactive-perforating-collagenosis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 169,
+      "term_en": "Recurrent fissuring of posterior fourchette",
+      "term_zh_raw": "後四肢反复裂開",
+      "term_zh_standard": "後四肢反复裂開",
+      "url": "https://dermnetnz.org/topics/recurrent-fissuring-of-posterior-fourchette",
+      "synonyms_tw": []
+    },
+    {
+      "id": 170,
+      "term_en": "Rheumatic fever",
+      "term_zh_raw": "風濕熱",
+      "term_zh_standard": "風濕熱",
+      "url": "https://dermnetnz.org/topics/rheumatic-fever",
+      "synonyms_tw": []
+    },
+    {
+      "id": 171,
+      "term_en": "Rheumatoid arthritis and the skin",
+      "term_zh_raw": "類風濕性關節炎和皮膚",
+      "term_zh_standard": "類風濕性關節炎和皮膚",
+      "url": "https://dermnetnz.org/topics/rheumatoid-arthritis-and-the-skin",
+      "synonyms_tw": []
+    },
+    {
+      "id": 172,
+      "term_en": "Rhinophyma",
+      "term_zh_raw": "鼻贅瘤",
+      "term_zh_standard": "鼻贅瘤",
+      "url": "https://dermnetnz.org/topics/rhinophyma",
+      "synonyms_tw": []
+    },
+    {
+      "id": 173,
+      "term_en": "Rosacea",
+      "term_zh_raw": "酒渣",
+      "term_zh_standard": "酒糟性皮膚炎（酒糟膚）",
+      "url": "https://dermnetnz.org/topics/rosacea",
+      "synonyms_tw": [
+        "酒糟",
+        "酒糟性皮膚炎",
+        "玫瑰痤瘡"
+      ]
+    },
+    {
+      "id": 174,
+      "term_en": "Roseola",
+      "term_zh_raw": "玫瑰疹",
+      "term_zh_standard": "玫瑰疹",
+      "url": "https://dermnetnz.org/topics/roseola",
+      "synonyms_tw": []
+    },
+    {
+      "id": 175,
+      "term_en": "Rubella",
+      "term_zh_raw": "風疹",
+      "term_zh_standard": "風疹",
+      "url": "https://dermnetnz.org/topics/rubella",
+      "synonyms_tw": []
+    },
+    {
+      "id": 176,
+      "term_en": "Scabies",
+      "term_zh_raw": "疥",
+      "term_zh_standard": "疥瘡",
+      "url": "https://dermnetnz.org/topics/scabies",
+      "synonyms_tw": [
+        "疥瘡"
+      ]
+    },
+    {
+      "id": 177,
+      "term_en": "Scalp folliculitis",
+      "term_zh_raw": "頭皮毛囊炎",
+      "term_zh_standard": "頭皮毛囊炎",
+      "url": "https://dermnetnz.org/topics/scalp-folliculitis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 178,
+      "term_en": "Scalp psoriasis",
+      "term_zh_raw": "頭皮牛皮癬",
+      "term_zh_standard": "頭皮乾癬",
+      "url": "https://dermnetnz.org/topics/scalp-psoriasis",
+      "synonyms_tw": [
+        "頭皮乾癬"
+      ]
+    },
+    {
+      "id": 179,
+      "term_en": "SCORAD",
+      "term_zh_raw": "斯科拉德",
+      "term_zh_standard": "斯科拉德",
+      "url": "https://dermnetnz.org/topics/scorad",
+      "synonyms_tw": []
+    },
+    {
+      "id": 180,
+      "term_en": "Seborrhoeic dermatitis",
+      "term_zh_raw": "脂溢性皮炎",
+      "term_zh_standard": "脂漏性皮膚炎",
+      "url": "https://dermnetnz.org/topics/seborrhoeic-dermatitis",
+      "synonyms_tw": [
+        "脂漏性皮膚炎"
+      ]
+    },
+    {
+      "id": 181,
+      "term_en": "Seborrhoeic keratosis",
+      "term_zh_raw": "脂溢性角化病",
+      "term_zh_standard": "脂溢性角化病",
+      "url": "https://dermnetnz.org/topics/seborrhoeic-keratosis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 182,
+      "term_en": "Seborrhoeic keratosis images",
+      "term_zh_raw": "脂溢性角化病圖像",
+      "term_zh_standard": "脂溢性角化病圖像",
+      "url": "https://dermnetnz.org/topics/seborrhoeic-keratosis-images",
+      "synonyms_tw": []
+    },
+    {
+      "id": 183,
+      "term_en": "Fitzpatrick skin phototype",
+      "term_zh_raw": "菲茨帕特里克皮膚光型",
+      "term_zh_standard": "菲茨帕特里克皮膚光型",
+      "url": "https://dermnetnz.org/topics/skin-phototype",
+      "synonyms_tw": []
+    },
+    {
+      "id": 184,
+      "term_en": "Solar lentigo",
+      "term_zh_raw": "日光性雀斑",
+      "term_zh_standard": "日光性雀斑",
+      "url": "https://dermnetnz.org/topics/solar-lentigo",
+      "synonyms_tw": []
+    },
+    {
+      "id": 185,
+      "term_en": "Stevens–Johnson syndrome / toxic epidermal necrolysis",
+      "term_zh_raw": "史蒂文斯-約翰遜綜合徵/中毒性表皮壞死松解症",
+      "term_zh_standard": "史蒂文斯-約翰遜綜合徵/中毒性表皮壞死松解症",
+      "url": "https://dermnetnz.org/topics/stevens-johnson-syndrome-toxic-epidermal-necrolysis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 186,
+      "term_en": "Telangiectasia",
+      "term_zh_raw": "毛細血管擴張",
+      "term_zh_standard": "毛細血管擴張",
+      "url": "https://dermnetnz.org/topics/telangiectasia",
+      "synonyms_tw": []
+    },
+    {
+      "id": 187,
+      "term_en": "Telogen effluvium",
+      "term_zh_raw": "休止期脫髮",
+      "term_zh_standard": "休止期脫髮",
+      "url": "https://dermnetnz.org/topics/telogen-effluvium",
+      "synonyms_tw": []
+    },
+    {
+      "id": 188,
+      "term_en": "Terminology in dermatology",
+      "term_zh_raw": "皮膚科術語",
+      "term_zh_standard": "皮膚科術語",
+      "url": "https://dermnetnz.org/topics/terminology",
+      "synonyms_tw": []
+    },
+    {
+      "id": 189,
+      "term_en": "Tinea",
+      "term_zh_raw": "癬（皮膚真菌感染）",
+      "term_zh_standard": "皮癬（黴菌感染）",
+      "url": "https://dermnetnz.org/topics/tinea",
+      "synonyms_tw": [
+        "皮癬",
+        "黴菌感染"
+      ]
+    },
+    {
+      "id": 190,
+      "term_en": "Tinea corporis",
+      "term_zh_raw": "體癬",
+      "term_zh_standard": "體癬",
+      "url": "https://dermnetnz.org/topics/tinea-corporis",
+      "synonyms_tw": [
+        "體癬",
+        "圓形癬"
+      ]
+    },
+    {
+      "id": 191,
+      "term_en": "Tinea cruris",
+      "term_zh_raw": "股癬",
+      "term_zh_standard": "股癬",
+      "url": "https://dermnetnz.org/topics/tinea-cruris",
+      "synonyms_tw": [
+        "股癬"
+      ]
+    },
+    {
+      "id": 192,
+      "term_en": "Tinea pedis",
+      "term_zh_raw": "足癬",
+      "term_zh_standard": "足癬",
+      "url": "https://dermnetnz.org/topics/tinea-pedis",
+      "synonyms_tw": [
+        "足癬",
+        "香港腳"
+      ]
+    },
+    {
+      "id": 193,
+      "term_en": "Topical antifungal medication",
+      "term_zh_raw": "局部抗真菌藥物",
+      "term_zh_standard": "局部抗真菌藥物",
+      "url": "https://dermnetnz.org/topics/topical-antifungal-medication",
+      "synonyms_tw": []
+    },
+    {
+      "id": 194,
+      "term_en": "Topical steroid",
+      "term_zh_raw": "外用類固醇",
+      "term_zh_standard": "外用類固醇",
+      "url": "https://dermnetnz.org/topics/topical-steroid",
+      "synonyms_tw": []
+    },
+    {
+      "id": 195,
+      "term_en": "Transient acantholytic dermatosis",
+      "term_zh_raw": "暫時性棘層松解性皮膚病",
+      "term_zh_standard": "暫時性棘層松解性皮膚病",
+      "url": "https://dermnetnz.org/topics/transient-acantholytic-dermatosis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 196,
+      "term_en": "Ultraviolet radiation and human health",
+      "term_zh_raw": "紫外線輻射與人類健康",
+      "term_zh_standard": "紫外線輻射與人類健康",
+      "url": "https://dermnetnz.org/topics/ultraviolet-radiation-and-human-health",
+      "synonyms_tw": []
+    },
+    {
+      "id": 197,
+      "term_en": "Upadacitinib",
+      "term_zh_raw": "烏帕替尼",
+      "term_zh_standard": "烏帕替尼",
+      "url": "https://dermnetnz.org/topics/upadacitinib",
+      "synonyms_tw": []
+    },
+    {
+      "id": 198,
+      "term_en": "Uraemic pruritus",
+      "term_zh_raw": "尿毒症瘙癢症",
+      "term_zh_standard": "尿毒症瘙癢症",
+      "url": "https://dermnetnz.org/topics/uraemic-pruritus",
+      "synonyms_tw": []
+    },
+    {
+      "id": 199,
+      "term_en": "Urea",
+      "term_zh_raw": "尿素",
+      "term_zh_standard": "尿素",
+      "url": "https://dermnetnz.org/topics/urea",
+      "synonyms_tw": []
+    },
+    {
+      "id": 200,
+      "term_en": "Urticaria – an overview",
+      "term_zh_raw": "蕁麻疹——概述",
+      "term_zh_standard": "蕁麻疹總論",
+      "url": "https://dermnetnz.org/topics/urticaria-an-overview",
+      "synonyms_tw": [
+        "蕁麻疹"
+      ]
+    },
+    {
+      "id": 201,
+      "term_en": "Urticaria and urticaria-like conditions",
+      "term_zh_raw": "蕁麻疹和蕁麻疹樣病症",
+      "term_zh_standard": "蕁麻疹與蕁麻疹樣疾病",
+      "url": "https://dermnetnz.org/topics/urticaria-and-urticaria-like-conditions",
+      "synonyms_tw": [
+        "蕁麻疹"
+      ]
+    },
+    {
+      "id": 202,
+      "term_en": "Urticaria in children",
+      "term_zh_raw": "兒童蕁麻疹",
+      "term_zh_standard": "兒童蕁麻疹",
+      "url": "https://dermnetnz.org/topics/urticaria-in-children",
+      "synonyms_tw": []
+    },
+    {
+      "id": 203,
+      "term_en": "Urticarial vasculitis",
+      "term_zh_raw": "蕁麻疹性血管炎",
+      "term_zh_standard": "蕁麻疹性血管炎",
+      "url": "https://dermnetnz.org/topics/urticarial-vasculitis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 204,
+      "term_en": "Useful dermatology resources for health professionals",
+      "term_zh_raw": "對衛生專業人員有用的皮膚科資源",
+      "term_zh_standard": "對衛生專業人員有用的皮膚科資源",
+      "url": "https://dermnetnz.org/topics/useful-resources-for-a-dermatologist",
+      "synonyms_tw": []
+    },
+    {
+      "id": 205,
+      "term_en": "UVB phototherapy",
+      "term_zh_raw": "UVB光療",
+      "term_zh_standard": "UVB光療",
+      "url": "https://dermnetnz.org/topics/uvb-phototherapy",
+      "synonyms_tw": []
+    },
+    {
+      "id": 206,
+      "term_en": "Vascular proliferations and abnormalities of blood vessels",
+      "term_zh_raw": "血管增生和血管異常",
+      "term_zh_standard": "血管增生和血管異常",
+      "url": "https://dermnetnz.org/topics/vascular-proliferations-and-abnormalities-of-blood-vessels",
+      "synonyms_tw": []
+    },
+    {
+      "id": 207,
+      "term_en": "Venous eczema",
+      "term_zh_raw": "靜脈性濕疹",
+      "term_zh_standard": "靜脈性濕疹",
+      "url": "https://dermnetnz.org/topics/venous-eczema",
+      "synonyms_tw": []
+    },
+    {
+      "id": 208,
+      "term_en": "Venous insufficiency",
+      "term_zh_raw": "靜脈功能不全",
+      "term_zh_standard": "靜脈功能不全",
+      "url": "https://dermnetnz.org/topics/venous-insufficiency",
+      "synonyms_tw": []
+    },
+    {
+      "id": 209,
+      "term_en": "Venous lake",
+      "term_zh_raw": "靜脈湖",
+      "term_zh_standard": "靜脈湖",
+      "url": "https://dermnetnz.org/topics/venous-lake",
+      "synonyms_tw": []
+    },
+    {
+      "id": 210,
+      "term_en": "Viral infections and the skin",
+      "term_zh_raw": "病毒感染和皮膚",
+      "term_zh_standard": "病毒感染和皮膚",
+      "url": "https://dermnetnz.org/topics/viral-skin-infections",
+      "synonyms_tw": []
+    },
+    {
+      "id": 211,
+      "term_en": "Viral wart",
+      "term_zh_raw": "病毒疣",
+      "term_zh_standard": "病毒疣",
+      "url": "https://dermnetnz.org/topics/viral-wart",
+      "synonyms_tw": [
+        "病毒疣",
+        "疣"
+      ]
+    },
+    {
+      "id": 212,
+      "term_en": "Vitiligo",
+      "term_zh_raw": "白癜風",
+      "term_zh_standard": "白斑（白癜風）",
+      "url": "https://dermnetnz.org/topics/vitiligo",
+      "synonyms_tw": [
+        "白斑",
+        "白癜風"
+      ]
+    },
+    {
+      "id": 213,
+      "term_en": "Vulval cysts",
+      "term_zh_raw": "外陰囊腫",
+      "term_zh_standard": "外陰囊腫",
+      "url": "https://dermnetnz.org/topics/vulval-cysts",
+      "synonyms_tw": []
+    },
+    {
+      "id": 214,
+      "term_en": "Vulval intraepithelial neoplasia",
+      "term_zh_raw": "外陰上皮內瘤變",
+      "term_zh_standard": "外陰上皮內瘤變",
+      "url": "https://dermnetnz.org/topics/vulval-intraepithelial-neoplasia",
+      "synonyms_tw": []
+    },
+    {
+      "id": 215,
+      "term_en": "Vulval lumps and bumps",
+      "term_zh_raw": "外陰腫塊和突起",
+      "term_zh_standard": "外陰腫塊和突起",
+      "url": "https://dermnetnz.org/topics/vulval-lumps-and-bumps",
+      "synonyms_tw": []
+    },
+    {
+      "id": 216,
+      "term_en": "Warfarin-induced skin necrosis",
+      "term_zh_raw": "華法林引起的皮膚壞死",
+      "term_zh_standard": "華法林引起的皮膚壞死",
+      "url": "https://dermnetnz.org/topics/warfarin-induced-skin-necrosis",
+      "synonyms_tw": []
+    },
+    {
+      "id": 217,
+      "term_en": "Eosinophilic cellulitis",
+      "term_zh_raw": "嗜酸性蜂窩織炎",
+      "term_zh_standard": "嗜酸性蜂窩織炎",
+      "url": "https://dermnetnz.org/topics/wells-syndrome",
+      "synonyms_tw": []
+    },
+    {
+      "id": 218,
+      "term_en": "Wells syndrome pathology",
+      "term_zh_raw": "威爾斯綜合徵病理",
+      "term_zh_standard": "嗜伊紅球性蜂窩組織炎",
+      "url": "https://dermnetnz.org/topics/wells-syndrome-pathology",
+      "synonyms_tw": ["嗜酸性蜂窝织炎"]
+    },
+    
+    {
+      "id": 220,
+      "term_en": "White nail",
+      "term_zh_raw": "白指甲",
+      "term_zh_standard": "白指甲",
+      "url": "https://dermnetnz.org/topics/white-nail",
+      "synonyms_tw": []
+    },
+    {
+      "id": 221,
+      "term_en": "Winter itch",
+      "term_zh_raw": "冬天癢",
+      "term_zh_standard": "冬天癢",
+      "url": "https://dermnetnz.org/topics/winter-itch",
+      "synonyms_tw": ["冬季癢是一種季節性皮膚疾病，也稱為缺脂性皮膚炎或乾燥性皮膚炎"]
+    },
+    {
+      "id": 222,
+      "term_en": "Wood lamp skin examination",
+      "term_zh_raw": "木燈皮膚檢查",
+      "term_zh_standard": "木燈皮膚檢查",
+      "url": "https://dermnetnz.org/topics/wood-lamp-skin-examination",
+      "synonyms_tw": []
+    }
+  ]
+}

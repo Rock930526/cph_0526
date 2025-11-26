@@ -2,27 +2,24 @@
 # -*- coding: utf-8 -*-
 """
 Milvus + BGE-M3 高可靠 RAG 重建器
-功能包含：
-- 多 JSON 來源合併
-- 自動清洗空欄位 / 無效欄位
-- 忽略超短內容
-- BGE-M3 批次 embed
-- 重建 Milvus collection
+強韌模式：不跳過任何資料，自動修正格式
+支援格式：
+1. [ {...}, {...} ]
+2. { "items": [ {...}, {...} ] }
+3. 任意亂格式（字串、list），會自動包成 dict
 """
 
 import os
 import json
-import numpy as np
 from tqdm import tqdm
 import torch
-
 from pymilvus import (
     connections, FieldSchema, CollectionSchema,
     DataType, Collection, utility
 )
 from FlagEmbedding import BGEM3FlagModel
 
-# ====== 設定 ======
+
 JSON_DIR = r"./rag_sources"
 MILVUS_HOST = "127.0.0.1"
 MILVUS_PORT = "19530"
@@ -30,27 +27,21 @@ COLLECTION_NAME = "dermnet_zh_bge_m3"
 EMBED_DIM = 1024
 
 
-# ===== 清洗工具 =====
+# -------------------------
+# 工具：清洗文字
+# -------------------------
 def clean_text(text):
-    """去除 None / 空白 / 無效字串 / HTML 斷行"""
     if not text:
         return None
-
     text = str(text).strip()
-
-    INVALID = ["", "None", "null", "undefined", "N/A", "nan"]
-    if text.lower() in INVALID:
+    if text.lower() in ["", "none", "null", "undefined", "n/a", "nan"]:
         return None
-
-    # 去除太短的垃圾文本
-    if len(text) < 10:
+    if len(text) < 2:
         return None
-
     return text
 
 
 def safe_text(*fields):
-    """依序挑選第一個有效欄位並清洗"""
     for f in fields:
         cleaned = clean_text(f)
         if cleaned:
@@ -58,86 +49,138 @@ def safe_text(*fields):
     return None
 
 
-# ====== 1. 合併所有 JSON ======
+# -------------------------
+# 自動讀 JSON：
+# - 支援 dict + items
+# - 支援 list
+# -------------------------
+def load_json_safely(path):
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    if isinstance(data, dict) and "items" in data:
+        return data["items"]
+
+    if isinstance(data, list):
+        return data
+
+    raise ValueError(f"⚠ JSON 格式錯誤：{path}")
+
+
+# -------------------------
+# 自動格式修正：統一轉成 dict
+# -------------------------
+def normalize_item(item):
+    # 如果是 dict → 直接用
+    if isinstance(item, dict):
+        return item
+
+    # 如果是 string → 自動包裝成 dict
+    if isinstance(item, str):
+        return {
+            "title": item,
+            "content": item,
+            "url": ""
+        }
+
+    # 如果是 list → 合併成一個字串
+    if isinstance(item, list):
+        merged = "；".join([str(x) for x in item])
+        return {
+            "title": merged,
+            "content": merged,
+            "url": ""
+        }
+
+    # 其他類型（int/float/bool） → 轉字串
+    return {
+        "title": str(item),
+        "content": str(item),
+        "url": ""
+    }
+
+
+# -------------------------
+# 1. 讀取所有 JSON
+# -------------------------
 all_titles = []
 all_urls = []
 all_contents = []
 
-print(f"掃描 JSON 資料夾：{JSON_DIR}")
 json_files = [f for f in os.listdir(JSON_DIR) if f.endswith(".json")]
-
-print(f"找到 JSON 檔案：{json_files}\n")
+print("找到 JSON：", json_files)
 
 for jf in json_files:
     path = os.path.join(JSON_DIR, jf)
-    print(f"📥 載入：{jf}")
+    print(f"📥 載入 {jf}")
 
-    with open(path, "r", encoding="utf-8") as f:
-        data = json.load(f)
+    data = load_json_safely(path)
 
-    for item in data:
-        title = safe_text(item.get("title_zh"), item.get("title"))
-        if not title:
-            continue
+    for raw_item in data:
 
-        url = clean_text(item.get("url")) or ""
+        item = normalize_item(raw_item)
+
+        title = safe_text(
+            item.get("term_zh_standard"),
+            item.get("title_zh"),
+            item.get("term_zh_raw"),
+            item.get("title"),
+            item.get("name_zh")
+        )
 
         content = safe_text(
             item.get("full_text_zh"),
-            item.get("full_text"),
             item.get("content_zh"),
-            item.get("content"),
             item.get("snippet_zh"),
-            item.get("snippet"),
             item.get("symptoms_zh"),
-            item.get("symptoms"),
             item.get("causes_zh"),
-            item.get("causes"),
+            item.get("content"),
+            item.get("term_zh_raw"),
+            title
         )
-        if not content:
-            continue
 
-        all_titles.append(title)
+        url = item.get("url") or ""
+
+        all_titles.append(title or "未命名")
         all_urls.append(url)
-        all_contents.append(content)
+        all_contents.append(content or title)
 
-print(f"\n📌 最終有效內容數量：{len(all_contents)} 筆\n")
+print(f"\n📌 最終總筆數：{len(all_contents)} 筆\n")
 
 
-# ====== 2. BGE-M3 向量產生 ======
+# -------------------------
+# 2. Embedding
+# -------------------------
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print("使用裝置：", device)
 
 model = BGEM3FlagModel("BAAI/bge-m3", device=device, use_fp16=(device == "cuda"))
 
 batch_size = 16
-all_embeddings = []
+embeddings = []
 
-print("🚀 開始產生 embedding ...")
-
-for i in tqdm(range(0, len(all_contents), batch_size), desc="Embedding batches"):
+print("🚀 產生 embedding ...")
+for i in tqdm(range(0, len(all_contents), batch_size)):
     batch = all_contents[i:i+batch_size]
-
     try:
-        emb = model.encode(batch).get("dense_vecs")
+        emb = model.encode(batch)["dense_vecs"]
+        for e in emb:
+            embeddings.append(e.tolist())
     except Exception as e:
-        print("⚠ embedding 失敗，跳過該批次：", e)
-        continue
+        print("⚠ Embedding 失敗跳過：", e)
 
-    for e in emb:
-        all_embeddings.append(e.tolist())
-
-print("✔ embedding 完成：", len(all_embeddings))
+print("✔ embedding 完成：", len(embeddings))
 
 
-# ====== 3. 重建 Milvus collection ======
+# -------------------------
+# 3. 建立 Milvus collection
+# -------------------------
 connections.connect(alias="default", host=MILVUS_HOST, port=MILVUS_PORT)
 
 if utility.has_collection(COLLECTION_NAME):
-    print(f"⚠ collection '{COLLECTION_NAME}' 已存在，刪除重建...")
+    print(f"刪除舊 collection：{COLLECTION_NAME}")
     utility.drop_collection(COLLECTION_NAME)
 
-# Schema
 fields = [
     FieldSchema(name="id", dtype=DataType.INT64, is_primary=True, auto_id=True),
     FieldSchema(name="title", dtype=DataType.VARCHAR, max_length=512),
@@ -146,38 +189,17 @@ fields = [
     FieldSchema(name="embedding", dtype=DataType.FLOAT_VECTOR, dim=EMBED_DIM),
 ]
 
-schema = CollectionSchema(fields=fields, description="RAG Cleaned Knowledge Base")
+schema = CollectionSchema(fields, description="DermNet + TW 名詞 RAG DB")
+collection = Collection(COLLECTION_NAME, schema, shards_num=2)
 
-collection = Collection(
-    name=COLLECTION_NAME,
-    schema=schema,
-    using="default",
-    shards_num=2,
-)
-
-# Index
 index_params = {
     "metric_type": "COSINE",
     "index_type": "IVF_FLAT",
     "params": {"nlist": 1024},
 }
 
-print("🔨 建立 index ...")
 collection.create_index("embedding", index_params)
-print("✔ index 完成")
-
-
-# ====== 4. 寫入 Milvus ======
-print("📤 寫入資料 ...")
-
-mr = collection.insert([
-    all_titles,
-    all_urls,
-    all_contents,
-    all_embeddings,
-])
-
-print(f"🎉 寫入完成，共：{len(all_titles)} 筆")
+collection.insert([all_titles, all_urls, all_contents, embeddings])
 collection.load()
 
-print("\n🚀 RAG 重建成功（含空欄位忽略 + 清洗）！")
+print("\n🎉 RAG 重建成功（不遺漏任何資料）！")

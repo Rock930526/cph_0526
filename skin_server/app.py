@@ -1,6 +1,8 @@
 # app.py
 from flask import Flask, request, jsonify
 import os
+import json
+
 from combined_inference import predict_combined
 
 app = Flask(__name__)
@@ -10,6 +12,11 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.route("/predict_combined", methods=["POST"])
 def predict_combined_api():
+    """
+    單一入口：
+    - 接收圖片 + 問卷 JSON（欄位名：survey）
+    - 呼叫兩階段推論（影像模型 + DeepSeek + RAG + DeepSeek）
+    """
     if "image" not in request.files:
         return jsonify({"error": "未上傳圖片"}), 400
 
@@ -17,11 +24,17 @@ def predict_combined_api():
     img_path = os.path.join(UPLOAD_FOLDER, image.filename)
     image.save(img_path)
 
-    patient_report = request.form.get("patient_report", "").strip()
+    # 問卷 JSON（可為空）
+    survey_raw = request.form.get("survey", "")
+    survey = {}
+    if survey_raw:
+        try:
+            survey = json.loads(survey_raw)
+        except Exception as e:
+            print("⚠️ survey JSON 解析失敗:", e)
 
     try:
-        # ✅ 改這裡 — 原本錯誤是 save_path 未定義
-        result = predict_combined(img_path)
+        result = predict_combined(img_path, survey)
         print("[DEBUG] Prediction result:", result)
         return jsonify(result)
     except Exception as e:
@@ -31,11 +44,10 @@ def predict_combined_api():
         return jsonify({"error": str(e)}), 500
 
 
-
-
-# 你原本的 /analyze 還保留，不影響
+# 保留原本 /analyze（如果你還有用）
 from inference import predict_image
 from lesion_inference import predict_lesion
+
 
 @app.route("/analyze", methods=["POST"])
 def analyze():
@@ -67,4 +79,5 @@ def analyze():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    # 0.0.0.0 代表可以讓手機從區網連進來
+    app.run(host="0.0.0.0", port=5000, debug=True)
