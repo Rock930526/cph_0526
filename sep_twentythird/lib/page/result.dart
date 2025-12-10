@@ -2,20 +2,20 @@
 import 'package:flutter/material.dart';
 
 class ResultPage extends StatelessWidget {
-  final String disease;       // ← 現在預期是 LLM 推論第一名
-  final String description;   // ← LLM 給的完整建議內容
+  final String top1;   // 模型第一名分類結果
+  final String report; // LLM 生成的敘述
 
   const ResultPage({
     super.key,
-    required this.disease,
-    required this.description,
+    required this.top1,
+    required this.report,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("AI 皮膚診斷結果"),
+        title: const Text("AI 病灶分析結果"),
         backgroundColor: Colors.black,
       ),
       backgroundColor: Colors.black,
@@ -24,34 +24,37 @@ class ResultPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
             // ================================
-            // 🔥 顯示 LLM 推測第一名疾病
+            // 🔥 顯示第一名分類結果
             // ================================
             Text(
-              "最可能診斷：",
+              "主要分類結果：",
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: Colors.cyanAccent,
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: 8),
+
             Text(
-              disease,
+              top1,
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 24),
 
             // ================================
-            // 🔥 診斷詳解（LLM）
+            // 🔥 LLM 報告
             // ================================
             Text(
               "綜合分析報告：",
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: Colors.cyanAccent,
+                    fontWeight: FontWeight.bold,
                   ),
             ),
             const SizedBox(height: 10),
@@ -59,7 +62,7 @@ class ResultPage extends StatelessWidget {
             Expanded(
               child: SingleChildScrollView(
                 child: Text(
-                  description,
+                  report,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: Colors.white,
                         height: 1.4,

@@ -3,20 +3,25 @@ from flask import Flask, request, jsonify
 import os
 import json
 
+# ✅ 你的 ConvNeXt 病灶模型推論
+from lesion_model import predict_lesion
+
+# ✅ ConvNeXt + RAG + LLM 的整合流程
 from combined_inference import predict_combined
 
 app = Flask(__name__)
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+print("🚀 Flask 伺服器啟動中（單一 ConvNeXt + RAG + LLM）...")
 
+
+# ==============================================================
+# 1. /predict_combined —— Flutter 主要用的 API
+# ==============================================================
 @app.route("/predict_combined", methods=["POST"])
 def predict_combined_api():
-    """
-    單一入口：
-    - 接收圖片 + 問卷 JSON（欄位名：survey）
-    - 呼叫兩階段推論（影像模型 + DeepSeek + RAG + DeepSeek）
-    """
+    # 一定要有 image
     if "image" not in request.files:
         return jsonify({"error": "未上傳圖片"}), 400
 
@@ -24,31 +29,37 @@ def predict_combined_api():
     img_path = os.path.join(UPLOAD_FOLDER, image.filename)
     image.save(img_path)
 
-    # 問卷 JSON（可為空）
+    # 問卷目前先不太用，但保留欄位
     survey_raw = request.form.get("survey", "")
     survey = {}
     if survey_raw:
         try:
             survey = json.loads(survey_raw)
         except Exception as e:
-            print("⚠️ survey JSON 解析失敗:", e)
+            print("⚠️ survey JSON 解析失敗：", e)
 
     try:
+        # ⭐ 核心：呼叫你寫好的 combined_inference
         result = predict_combined(img_path, survey)
-        print("[DEBUG] Prediction result:", result)
-        return jsonify(result)
+
+        # Flutter 只吃這兩個
+        top1 = result.get("final_top1") or "無資料"
+        report = result.get("final_text") or "（無 LLM 回覆）"
+
+        return jsonify({
+            "top1": top1,
+            "report": report,
+        }), 200
+
     except Exception as e:
         import traceback
-        print("❌ Flask 內部錯誤:", e)
         traceback.print_exc()
         return jsonify({"error": str(e)}), 500
 
 
-# 保留原本 /analyze（如果你還有用）
-from inference import predict_image
-from lesion_inference import predict_lesion
-
-
+# ==============================================================
+# 2. /analyze —— Debug 用，只回 ConvNeXt 模型原始結果
+# ==============================================================
 @app.route("/analyze", methods=["POST"])
 def analyze():
     if "image" not in request.files:
@@ -56,28 +67,30 @@ def analyze():
 
     img = request.files["image"]
     img_path = os.path.join(UPLOAD_FOLDER, img.filename)
+    image_name = img.filename
     img.save(img_path)
 
     try:
-        disease_result = predict_image(img_path)
         lesion_result = predict_lesion(img_path)
-        response = {
-            "prediction": {
-                "disease": disease_result,
-                "lesion": lesion_result,
-                "summary": (
-                    f"模型辨識為 {disease_result['class_name']} "
-                    f"(信心 {disease_result['confidence']*100:.1f}%)，"
-                    f"偵測到病變特徵："
-                    f"{', '.join([x['label'] for x in lesion_result.get('lesions', [])]) or '無特徵'}。"
-                )
-            }
-        }
-        return jsonify(response)
+        return jsonify({
+            "image": image_name,
+            "lesion_raw": lesion_result,
+        }), 200
+
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         return jsonify({"error": str(e)}), 500
 
 
+# ==============================================================
+# 3. 入口 —— 一定要 host=0.0.0.0, threaded=True
+# ==============================================================
 if __name__ == "__main__":
-    # 0.0.0.0 代表可以讓手機從區網連進來
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    # 一律用 python app.py 啟動，不要用 flask run
+    app.run(
+        host="0.0.0.0",
+        port=5000,
+        debug=True,
+        threaded=True,   # 讓每個 request 各跑一條 thread
+    )

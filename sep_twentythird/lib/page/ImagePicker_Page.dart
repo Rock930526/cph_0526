@@ -1,10 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:flutter/services.dart'; // 新增
-import 'package:permission_handler/permission_handler.dart';
-import '../page/QuestionnairePage.dart';
-
+import '../page/preview.dart';
 
 class ImagePickerPage extends StatefulWidget {
   const ImagePickerPage({super.key});
@@ -15,78 +12,58 @@ class ImagePickerPage extends StatefulWidget {
 
 class _ImagePickerPageState extends State<ImagePickerPage> {
   File? _image;
-  static const platform = MethodChannel('com.example.save_image'); // 新增
 
-  Future<void> _pickImage(ImageSource source) async {
-    // 新增：請求權限
-    await Permission.storage.request();
-    await Permission.photos.request();
-
+  Future<void> pickImage(ImageSource source) async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: source);
-    if (pickedFile != null) {
-      setState(() {
-        _image = File(pickedFile.path);
-      });
-      // 原生存相簿
-      await _saveImageToGallery(pickedFile.path);
-    }
-  }
 
-  Future<void> _saveImageToGallery(String path) async {
-    try {
-      await platform.invokeMethod('saveImage', {'path': path});
-    } catch (e) {
-      debugPrint('儲存失敗: $e');
-    }
+    if (pickedFile == null) return;
+
+    setState(() {
+      _image = File(pickedFile.path);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('選取或拍照')),
+      appBar: AppBar(title: const Text("選取或拍照")),
       body: Center(
-  child: _image == null
-      ? const Text('尚未選取圖片')
-      : Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.file(_image!),
-            const SizedBox(height: 24),
-            ElevatedButton.icon(
-              icon: const Icon(Icons.check),
-              label: const Text("使用這張照片"),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.cyanAccent,
-                foregroundColor: Colors.black,
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        child: _image == null
+            ? const Text("尚未選擇照片")
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.file(_image!),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    child: const Text("使用這張"),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) =>
+                              PreviewPage(imagePath: _image!.path),
+                        ),
+                      );
+                    },
+                  )
+                ],
               ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => QuestionnairePage(imagePath: _image!.path),
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
-),
-
+      ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
-            heroTag: 'camera',
+            heroTag: 'cam',
             child: const Icon(Icons.camera_alt),
-            onPressed: () => _pickImage(ImageSource.camera),
+            onPressed: () => pickImage(ImageSource.camera),
           ),
           const SizedBox(height: 16),
           FloatingActionButton(
-            heroTag: 'gallery',
+            heroTag: 'gal',
             child: const Icon(Icons.photo),
-            onPressed: () => _pickImage(ImageSource.gallery),
+            onPressed: () => pickImage(ImageSource.gallery),
           ),
         ],
       ),

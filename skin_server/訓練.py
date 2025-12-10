@@ -18,10 +18,10 @@ TRAIN_DIR = os.path.join(DATA_DIR, "train")
 VAL_DIR   = os.path.join(DATA_DIR, "val")
 
 MODEL_NAME = "convnext_tiny"  # timm 模型名稱
-BATCH_SIZE = 32
+BATCH_SIZE = 64
 NUM_EPOCHS = 30
 LR = 1e-4
-NUM_WORKERS = 4
+NUM_WORKERS = 16
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 

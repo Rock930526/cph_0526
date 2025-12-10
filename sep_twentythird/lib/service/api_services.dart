@@ -1,66 +1,65 @@
-// === api_services.dart ===
-
+// api_services.dart
 import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../page/result.dart';
 
-Future<void> uploadImageAndSurvey(
-    String imagePath, Map<String, dynamic> surveyData, BuildContext context) async {
+Future<void> uploadImageOnly(
+    String imagePath, BuildContext context) async {
   try {
-    // ============================================
-    // 1️⃣ 上傳圖片 + 問卷 → 後端 Flask 伺服器
-    // ============================================
+    debugPrint("👉 按下送出分析，準備呼叫 uploadImageOnly");
+    debugPrint("STEP 0 — 函式開始執行");
+    debugPrint("STEP 0.1 — imagePath = $imagePath");
 
-    final uri1 = Uri.parse("http://120.125.78.132:5000/predict_combined");
+    // ✅ 先用你 Postman 測過可用的那個 IP
+    final uri = Uri.parse("http://120.125.78.132:5000/predict_combined");
+    debugPrint("STEP 1 — URI 準備好了: $uri");
 
-    final request1 = http.MultipartRequest("POST", uri1);
+    final request = http.MultipartRequest("POST", uri);
+    debugPrint("STEP 2 — 建立 MultipartRequest 成功");
 
-    // 上傳圖片
-    request1.files.add(await http.MultipartFile.fromPath('image', imagePath));
+    request.files.add(await http.MultipartFile.fromPath('image', imagePath));
+    debugPrint("STEP 3 — 圖片加入成功");
 
-    // 問卷 JSON
-    request1.fields['survey'] = jsonEncode(surveyData);
+    // 加一個 timeout，避免永遠卡住
+    debugPrint("STEP 4 — 準備送出 request（等待中）");
+    final streamedResponse = await request.send().timeout(
+      const Duration(seconds: 30),
+      onTimeout: () {
+        throw Exception("連線逾時（30 秒內沒有回應）");
+      },
+    );
 
-    // 送出請求
-    final response1 = await request1.send();
-    final responseBody1 = await response1.stream.bytesToString();
+    debugPrint("STEP 5 — 收到伺服器回應，status = ${streamedResponse.statusCode}");
+    final responseBody = await streamedResponse.stream.bytesToString();
 
-    if (response1.statusCode != 200) {
+    debugPrint("===== RAW RESPONSE START =====");
+    debugPrint(responseBody);
+    debugPrint("===== RAW RESPONSE END =====");
+
+    if (streamedResponse.statusCode != 200) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("圖片或問卷分析失敗，請稍後再試。")),
+        SnackBar(content: Text("影像分析失敗（${streamedResponse.statusCode}）")),
       );
       return;
     }
 
-    final result1 = jsonDecode(responseBody1);
-
-    // ============================================
-    // 2️⃣ 後端回傳欄位（新版）
-    //  - final_top1: LLM 最終判斷出的主要疾病（字串）
-    //  - final_text: LLM 產生的完整敘述（字串）
-    //  - final_candidates: LLM 內部使用候選列表（前端不顯示）
-    // ============================================
-
-    final String llmTop1 = result1["final_top1"] ?? "無法判定";
-    final String llmText = result1["final_text"] ?? "（無內容）";
-
-    // ============================================
-    // 3️⃣ 導向結果頁
-    // ============================================
+    final result = jsonDecode(responseBody);
+    final String top1 = result["top1"] ?? "無資料";
+    final String report = result["report"] ?? "（無 LLM 回覆）";
 
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (_) => ResultPage(
-          disease: llmTop1,
-          description: llmText,
+          top1: top1,
+          report: report,
         ),
       ),
     );
-  } catch (e) {
-    debugPrint("❌ uploadImageAndSurvey error: $e");
+  } catch (e, st) {
+    debugPrint("❌ uploadImageOnly error: $e");
+    debugPrint("STACK: $st");
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text("發生錯誤: $e")),
     );
