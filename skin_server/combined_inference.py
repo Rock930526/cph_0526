@@ -114,55 +114,54 @@ def call_llm(prompt: str) -> str:
 # ---------------------------
 # 主流程：影像 → RAG → LLM
 # ---------------------------
-def predict_combined(
-    image_path: str,
-    survey: Optional[Dict[str, Any]] = None,  # 現在不再使用問卷，但保留參數避免爆掉
-) -> Dict[str, Any]:
+def predict_combined(image_path: str, survey=None):
     try:
-        # 1️⃣ ConvNeXt 影像分類
+        print("\n==============================")
+        print("🔥 [COMBINED] 影像 → RAG → LLM 開始")
+        print("==============================")
+
+        # 1️⃣ 模型分類
         lesion = predict_lesion(image_path)
         top1 = lesion.get("top1", {})
-        top1_label = top1.get("label", "未知")
-        top1_conf = float(top1.get("confidence", 0.0))
+        label = top1.get("label", "未知")
+        conf = float(top1.get("confidence", 0.0))
 
-        # 2️⃣ 風險簡易評估
-        risk_flag = compute_risk_flag(top1_label, top1_conf)
+        print(f"🔍 [Model] Top1 = {label} ({conf*100:.1f}%)")
 
-        # 3️⃣ RAG：用 top1 label 去 DermNet / Milvus 搜尋
-        rag_info: List[Dict[str, Any]] = search_knowledge(top1_label, top_k=5)
+        # 2️⃣ RAG 查詢
+        rag_info = search_knowledge(label, top_k=5)
 
-        # 4️⃣ 建立 LLM Prompt + 呼叫 DeepSeek
-        prompt = build_report_prompt(lesion, rag_info, risk_flag)
+        print("\n===== 🔵 [RAG Query] =====")
+        if not rag_info:
+            print("⚠️ RAG 沒取到任何相關知識（可能是標籤名稱對不上資料庫）")
+        else:
+            print(f"🟢 共取到 {len(rag_info)} 筆 RAG 資料")
+            for i, item in enumerate(rag_info, start=1):
+                print(f"  RAG {i}: {item.get('title')} (字數 {len(item.get('content',''))})")
+
+        # 3️⃣ 建立 Prompt + 呼叫 LLM
+        prompt = build_report_prompt(lesion, rag_info, compute_risk_flag(label, conf))
 
         try:
+            print("\n===== 🤖 呼叫 DeepSeek =====")
             final_text = call_llm(prompt)
-        except Exception as llm_err:
-            print("⚠️ LLM 呼叫失敗：", llm_err)
-            final_text = "系統在產生說明文字時發生錯誤，但影像分類結果仍可供醫師參考。"
-
-        # 5️⃣ 簡短 summary（方便 log / debug）
-        top3_labels = [x.get("label", "") for x in lesion.get("top3", [])]
-        summary = (
-            f"AI 主要分類結果：{top1_label}（約 {top1_conf*100:.1f}%）；"
-            f"Top3 依序為：{', '.join(top3_labels) or '無'}。"
-        )
+            print(f"✨ LLM 回應字數：{len(final_text)}")
+        except Exception as err:
+            print("❌ LLM 呼叫失敗：", err)
+            final_text = "（LLM 回應失敗，但分類結果已產生）"
 
         return {
-            "lesion": lesion,              # 影像模型原始結果
-            "rag": rag_info,               # RAG 取回的醫學內容
-            "risk_flag": risk_flag,        # 風險文字
-            "summary": summary,            # 簡短摘要
-            "final_top1": top1_label,      # 給前端用的主要結果
-            "final_text": final_text,      # LLM 報告
+            "final_top1": label,
+            "final_text": final_text,
+            "rag": rag_info,
+            "lesion": lesion,
         }
 
     except Exception as e:
-        import traceback
-        traceback.print_exc()
+        print("❌ COMBINED ERROR:", e)
         return {
-            "error": str(e),
-            "summary": "⚠️ 推論過程中發生錯誤",
+            "final_top1": "未知",
+            "final_text": "系統發生錯誤",
             "rag": [],
-            "final_top1": "無資料",
-            "final_text": "系統在分析過程中發生錯誤，請稍後再試或洽系統管理者。",
+            "lesion": {},
         }
