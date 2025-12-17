@@ -45,5 +45,20 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
+	
+	<key>NSCameraUsageDescription</key>
+	<string>此應用程式需要使用相機以拍攝影像。</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>此應用程式需要存取相簿以選取或儲存圖片。</string>
+
 </dict>
 </plist>
+
+
+<!-- <key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+</dict> -->
+
