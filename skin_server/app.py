@@ -83,6 +83,33 @@ def analyze():
         return jsonify({"error": str(e)}), 500
 
 
+
+# ==============================================================
+# 4. LLM 問答（Chat）API —— 不需要圖片、不需要模型
+# ==============================================================
+from combined_inference import ask_llm
+
+@app.route("/ask_llm", methods=["POST"])
+def ask_llm_api():
+    try:
+        data = request.get_json()
+        prompt = data.get("question", "").strip()
+
+        if not prompt:
+            return jsonify({"error": "指令 不可為空"}), 400
+
+        print("🧠 LLM 問答請求：", prompt)
+
+        # 呼叫 LLM（DeepSeek）
+        answer = ask_llm(prompt)
+
+        return jsonify({"answer": answer}), 200
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
+
 # ==============================================================
 # 3. 入口 —— 一定要 host=0.0.0.0, threaded=True
 # ==============================================================

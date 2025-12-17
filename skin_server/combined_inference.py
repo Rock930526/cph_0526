@@ -165,3 +165,14 @@ def predict_combined(image_path: str, survey=None):
             "rag": [],
             "lesion": {},
         }
+    
+OLLAMA_URL = "http://127.0.0.1:11434/api/generate"
+def ask_llm(prompt: str) -> str:
+    payload = {
+        "model": "deepseek-r1:14b",
+        "prompt": prompt,
+        "stream": False
+    }
+    res = requests.post(OLLAMA_URL, json=payload)
+    result = res.json()
+    return result.get("response") or "（LLM 無回覆）"
