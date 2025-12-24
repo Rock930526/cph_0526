@@ -11,28 +11,26 @@ class CameraPage extends StatefulWidget {
 
 class _CameraPageState extends State<CameraPage> {
   CameraController? _controller;
-  Future<void>? _initializeControllerFuture;
+  Future<void>? _initFuture;
 
   @override
   void initState() {
     super.initState();
-    availableCameras().then((cameras) {
-      if (cameras.isNotEmpty) {
-        _controller = CameraController(
-          cameras.first,
-          ResolutionPreset.high,
-          enableAudio: false,
-        );
-        _initializeControllerFuture = _controller!.initialize().catchError((e) {
-          debugPrint("Camera init error: $e");
-        });
-        setState(() {});
-      } else {
-        debugPrint("No cameras available");
-      }
-    }).catchError((e) {
-      debugPrint("Error getting cameras: $e");
-    });
+    _initCamera();
+  }
+
+  Future<void> _initCamera() async {
+    final cameras = await availableCameras();
+    if (cameras.isEmpty) return;
+
+    _controller = CameraController(
+      cameras.first,
+      ResolutionPreset.high,
+      enableAudio: false,
+    );
+
+    _initFuture = _controller!.initialize();
+    setState(() {});
   }
 
   @override
@@ -44,41 +42,38 @@ class _CameraPageState extends State<CameraPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("AI Skin Scanner")),
-      body: (_initializeControllerFuture != null)
-          ? FutureBuilder<void>(
-              future: _initializeControllerFuture,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done && _controller != null) {
-                  return CameraPreview(_controller!);
-                } else if (snapshot.hasError) {
-                  return Center(child: Text('相機初始化失敗'));
-                } else {
-                  return const Center(child: CircularProgressIndicator());
-                }
-              },
-            )
-          : const Center(child: Text('正在初始化相機...')),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.camera_alt, size: 30),
-        onPressed: () async {
-          if (_controller == null || _initializeControllerFuture == null) return;
-          try {
-            await _initializeControllerFuture;
-            final image = await _controller!.takePicture();
-            if (!mounted) return;
+      backgroundColor: Colors.black,
+      appBar: AppBar(title: const Text("拍照分析")),
 
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PreviewPage(imagePath: image.path),
-              ),
-            );
-          } catch (e) {
-            debugPrint("Error: $e");
-          }
+      body: _initFuture == null
+          ? const Center(child: CircularProgressIndicator())
+          : FutureBuilder(
+              future: _initFuture,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return CameraPreview(_controller!);
+                }
+                return const Center(child: CircularProgressIndicator());
+              },
+            ),
+
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          if (_controller == null) return;
+
+          final image = await _controller!.takePicture();
+          if (!mounted) return;
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => PreviewPage(imagePath: image.path),
+            ),
+          );
         },
+        child: const Icon(Icons.camera_alt),
       ),
     );
   }
