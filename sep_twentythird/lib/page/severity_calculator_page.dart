@@ -211,80 +211,80 @@ class _SeverityCalculatorPageState extends State<SeverityCalculatorPage> {
   }
 
   Widget buildRegion(String region) {
-    final d = regions[region]!;
-    final enabled = (d["area"] ?? 0) > 0;
+  final d = regions[region]!;
+  final enabled = (d["area"] ?? 0) > 0;
 
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(region, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+  return Card(
+    margin: const EdgeInsets.symmetric(vertical: 8),
+    child: Padding(
+      padding: const EdgeInsets.all(12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            region,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
 
+          const SizedBox(height: 8),
+
+          /// ✅ ① 面積先選（最直觀）
+          buildDropdown(
+            label: "病灶面積（掌心法）",
+            keyName: "area",
+            data: d,
+            options: areaLabelsByRegion[region]!,
+            enabled: true,
+            onChanged: (v) {
+              final areaScore = v ?? 0;
+              setState(() {
+                d["area"] = areaScore;
+                d["bsaPalm"] = estimatePalms(region, areaScore);
+              });
+            },
+          ),
+
+          const Divider(),
+
+          /// ② 以下嚴重度，只有選了面積才啟用
+          buildDropdown(
+            label: "紅斑",
+            keyName: "a",
+            data: d,
+            options: severityLabels,
+            enabled: enabled,
+          ),
+
+          buildDropdown(
+            label: "厚度 / 浸潤",
+            keyName: "b",
+            data: d,
+            options: severityLabels,
+            enabled: enabled,
+          ),
+
+          buildDropdown(
+            label: "鱗屑 / 抓痕",
+            keyName: "c",
+            data: d,
+            options: severityLabels,
+            enabled: enabled,
+          ),
+
+          if (disease == SeverityDisease.eczema)
             buildDropdown(
-              label: "紅斑",
-              keyName: "a",
+              label: "苔癬化",
+              keyName: "d",
               data: d,
               options: severityLabels,
               enabled: enabled,
             ),
-
-            buildDropdown(
-              label: "厚度 / 浸潤",
-              keyName: "b",
-              data: d,
-              options: severityLabels,
-              enabled: enabled,
-            ),
-
-            buildDropdown(
-              label: "鱗屑 / 抓痕",
-              keyName: "c",
-              data: d,
-              options: severityLabels,
-              enabled: enabled,
-            ),
-
-            if (disease == SeverityDisease.eczema)
-              buildDropdown(
-                label: "苔癬化",
-                keyName: "d",
-                data: d,
-                options: severityLabels,
-                enabled: enabled,
-              ),
-
-            const Divider(),
-
-            /// ✅ 你原本只有一個面積下拉：保留
-            /// ✅ 但選的同時，額外把掌心數存進 bsaPalm，讓 BSA 正確
-            buildDropdown(
-              label: "病灶面積（掌心法）",
-              keyName: "area",
-              data: d,
-              options: areaLabelsByRegion[region]!,
-              enabled: true,
-              onChanged: (v) {
-                final areaScore = v ?? 0;
-                setState(() {
-                  d["area"] = areaScore;
-                  d["bsaPalm"] = estimatePalms(region, areaScore); // ✅ 新增同步紀錄
-                });
-              },
-            ),
-
-            // ✅ 非必要，但超有用：直接顯示這部位目前換算出的掌心數（不影響你原本顯示）
-            // Text(
-            //   "（本部位估計：${d["bsaPalm"]} 掌 ≈ ${d["bsaPalm"]}%）",
-            //   style: const TextStyle(fontSize: 12, color: Colors.white70),
-            // ),
-          ],
-        ),
+        ],
       ),
-    );
-  }
+    ),
+  );
+}
+
 
   @override
   Widget build(BuildContext context) {
