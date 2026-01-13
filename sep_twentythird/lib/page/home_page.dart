@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sep_twentythird/page/profile_edit_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -7,41 +9,54 @@ class HomePage extends StatelessWidget {
   /// 使用者小選單（右上角）
   /// =======================
   void _showUserMenu(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      builder: (_) {
-        return Container(
-          margin: const EdgeInsets.all(12),
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          decoration: BoxDecoration(
-            color: const Color(0xFF2B2B2B),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // 使用者資訊
-              ListTile(
-                leading: const CircleAvatar(
-                  backgroundColor: Colors.cyanAccent,
-                  child: Icon(Icons.person, color: Colors.black),
-                ),
-                title: const Text(
-                  'x幻月 凜空',
-                  style: TextStyle(color: Colors.white),
-                ),
-                subtitle: const Text(
-                  '@rock.chen12345613',
-                  style: TextStyle(color: Colors.white54),
-                ),
+  final user = FirebaseAuth.instance.currentUser;
+
+  showModalBottomSheet(
+    context: context,
+    backgroundColor: Colors.transparent,
+    builder: (_) {
+      return Container(
+        margin: const EdgeInsets.all(12),
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        decoration: BoxDecoration(
+          color: const Color(0xFF2B2B2B),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Colors.cyanAccent,
+                backgroundImage:
+                    user?.photoURL != null ? NetworkImage(user!.photoURL!) : null,
+                child: user?.photoURL == null
+                    ? const Icon(Icons.person, color: Colors.black)
+                    : null,
               ),
+              title: Text(
+                user?.displayName ?? '未命名使用者',
+                style: const TextStyle(color: Colors.white),
+              ),
+              subtitle: Text(
+                user?.email ?? '',
+                style: const TextStyle(color: Colors.white54),
+              ),
+            ),
+
 
               const Divider(color: Colors.white24),
 
               _menuItem(Icons.auto_fix_high, '個人化', () {
                 Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const ProfileEditPage(),
+                  ),
+                );
               }),
+
 
               _menuItem(Icons.settings, '設定', () {
                 Navigator.pop(context);
@@ -56,9 +71,12 @@ class HomePage extends StatelessWidget {
               _menuItem(
                 Icons.logout,
                 '登出',
-                () {
+                () async {
                   Navigator.pop(context);
-                  // TODO: 之後接登出邏輯
+
+                  await FirebaseAuth.instance.signOut();
+                  // ❗ 不用 push、不用 pop
+                  // AuthGate 會自動把你送回登入頁
                 },
                 color: Colors.redAccent,
               ),

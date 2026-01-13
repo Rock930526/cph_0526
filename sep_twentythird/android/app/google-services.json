@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "680680257082",
+    "project_id": "university-graduation",
+    "storage_bucket": "university-graduation.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:680680257082:android:1ae021a82ccb555123a703",
+        "android_client_info": {
+          "package_name": "com.example.sep_twentythird"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "680680257082-8pjn043rkkf8cm9hj5ae9ciaq59r5hdg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4lNdYUa50DQZIy8lh-SgOIpAl8nk2f-c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "680680257082-8pjn043rkkf8cm9hj5ae9ciaq59r5hdg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

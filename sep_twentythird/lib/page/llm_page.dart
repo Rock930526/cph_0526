@@ -22,7 +22,7 @@ class _LlmPageState extends State<LlmPage> {
 使用者問題：
 $userInput
 
-請以繁體中文回覆，並提醒模型結果僅供輔助，非最終診斷。
+請以繁體中文回覆，並提醒模型結果僅供輔助，非最終根據。
 ''';
   }
 

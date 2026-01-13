@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'widget/auth_gate.dart';
 import 'theme/app_theme.dart';
-import 'page/home_page.dart';
-import 'app_shell_page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
@@ -16,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'AI Skin Scanner',
       theme: appTheme,
-      home: const AppShellPage(),
+      home: const AuthGate(),
     );
   }
 }
