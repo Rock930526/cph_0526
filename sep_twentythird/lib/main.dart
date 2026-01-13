@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'widget/auth_gate.dart';
 import 'theme/app_theme.dart';
+import 'widget/debug_db_check.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,7 +12,8 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  // 🔍 SQLite 驗證（只要跑一次就好）
+  await DebugDbCheck.checkAndCreateDb();
   runApp(const MyApp());
 }
 

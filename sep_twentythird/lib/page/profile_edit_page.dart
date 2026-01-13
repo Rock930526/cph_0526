@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import '../service/user_profile.dart';
+import '../service/user_profile_dao.dart';
 
 class ProfileEditPage extends StatefulWidget {
   const ProfileEditPage({super.key});
@@ -9,11 +13,19 @@ class ProfileEditPage extends StatefulWidget {
 }
 
 class _ProfileEditPageState extends State<ProfileEditPage> {
+  final _dao = UserProfileDao();
+
+  // Firebase
+  late final String _uid;
+  String? _email;
+
+  // 基本資料
   DateTime? _birthday;
   String _gender = 'M'; // M / F / O
   double _height = 170;
   double _weight = 65;
 
+  // 慢性病
   final Set<String> _chronicConditions = {};
   final List<String> _conditionOptions = [
     '乾癬',
@@ -23,7 +35,55 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
     '氣喘',
   ];
 
+  // 聯絡資訊
   final TextEditingController _phoneCtrl = TextEditingController();
+
+  bool _loading = true;
+
+  // =========================
+  // 初始化：讀 SQLite
+  // =========================
+  @override
+  void initState() {
+    super.initState();
+    _init();
+  }
+
+  Future<void> _init() async {
+    final user = FirebaseAuth.instance.currentUser!;
+    _uid = user.uid;
+    _email = user.email;
+
+    final profile = await _dao.getProfileByUid(_uid);
+
+    if (profile != null) {
+      if (profile.birthday != null) {
+        _birthday = DateTime.tryParse(profile.birthday!);
+      }
+
+      if (profile.gender != null) {
+        _gender = profile.gender!;
+      }
+
+      if (profile.heightCm != null) {
+        _height = profile.heightCm!;
+      }
+
+      if (profile.weightKg != null) {
+        _weight = profile.weightKg!;
+      }
+
+      if (profile.chronicConditions != null &&
+          profile.chronicConditions!.isNotEmpty) {
+        _chronicConditions
+            .addAll(profile.chronicConditions!.split(','));
+      }
+
+      _phoneCtrl.text = profile.phone ?? '';
+    }
+
+    setState(() => _loading = false);
+  }
 
   // =========================
   // 日期選擇
@@ -42,25 +102,42 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
   }
 
   // =========================
-  // 儲存（先留樣子）
+  // 儲存到 SQLite
   // =========================
-  void _saveProfile() {
-    // TODO: 之後接 SQLite / Firebase
-    debugPrint('Birthday: $_birthday');
-    debugPrint('Gender: $_gender');
-    debugPrint('Height: $_height');
-    debugPrint('Weight: $_weight');
-    debugPrint('Conditions: $_chronicConditions');
-    debugPrint('Phone: ${_phoneCtrl.text}');
+  Future<void> _saveProfile() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
 
+    final dao = UserProfileDao();
+
+    await dao.upsertProfile(
+      uid: user.uid,
+      birthday: _birthday,
+      gender: _gender,
+      heightCm: _height,
+      weightKg: _weight,
+      chronicConditions: _chronicConditions,
+      email: user.email,
+      phone: _phoneCtrl.text.isEmpty ? null : _phoneCtrl.text,
+    );
+
+    if (!mounted) return;
     Navigator.pop(context);
   }
+
 
   // =========================
   // UI
   // =========================
   @override
   Widget build(BuildContext context) {
+    if (_loading) {
+      return const Scaffold(
+        backgroundColor: Colors.black,
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -113,7 +190,9 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                     selected: _chronicConditions.contains(c),
                     onSelected: (v) {
                       setState(() {
-                        v ? _chronicConditions.add(c) : _chronicConditions.remove(c);
+                        v
+                            ? _chronicConditions.add(c)
+                            : _chronicConditions.remove(c);
                       });
                     },
                   );
