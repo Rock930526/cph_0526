@@ -2,38 +2,55 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+
+	<!-- 基本 App 資訊 -->
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+
 	<key>CFBundleDisplayName</key>
 	<string>Sep Twentythird</string>
+
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+
 	<key>CFBundleName</key>
 	<string>sep_twentythird</string>
+
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
+
 	<key>CFBundleSignature</key>
 	<string>????</string>
+
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+
+	<!-- UI / 啟動畫面 -->
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -41,26 +58,44 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 
-	
+	<!-- 權限說明 -->
 	<key>NSCameraUsageDescription</key>
 	<string>此應用程式需要使用相機以拍攝影像。</string>
+
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>此應用程式需要存取相簿以選取或儲存圖片。</string>
+
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>我們需要您的位置以搜尋附近的醫療院所</string>
+	<string>我們需要您的位置以搜尋附近的醫療院所。</string>
+
+	<!-- =============================== -->
+	<!-- Firebase / Google Sign-In 必要設定 -->
+	<!-- =============================== -->
+
+	<!-- 🔥 請換成 GoogleService-Info.plist 裡的 CLIENT_ID -->
+	<key>GIDClientID</key>
+	<string>680680257082-8e8phar2qog1ifblp82tjl8f7smn6d8c.apps.googleusercontent.com</string>
+
+	<!-- 🔥 Google Sign-In 回跳用 -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<!-- 🔥 請換成 GoogleService-Info.plist 裡的 REVERSED_CLIENT_ID -->
+				<string>com.googleusercontent.apps.680680257082-8e8phar2qog1ifblp82tjl8f7smn6d8c</string>
+			</array>
+		</dict>
+	</array>
 
 </dict>
 </plist>
-
-
-<!-- <key>NSAppTransportSecurity</key>
-<dict>
-    <key>NSAllowsArbitraryLoads</key>
-    <true/>
-</dict> -->
-

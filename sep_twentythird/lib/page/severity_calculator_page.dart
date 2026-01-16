@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../service/severity_record_dao.dart';
+import '../widget/severity_trend_panel.dart';
+
+
 
 /// =======================
 /// 疾病類型
@@ -63,16 +68,13 @@ const Map<String, Map<int, String>> areaLabelsByRegion = {
 };
 
 /// =======================
-/// 「面積等級 → 掌心數」
-/// 這裡用你 UI 文字的「中位數估計」
-/// 目的：讓 BSA 用掌心法真的算得出來
+/// 面積等級 → 掌心數
 /// =======================
 const Map<String, List<int>> palmsByRegionAndArea = {
-  // index 0..6 對應 area 0..6
-  "頭":   [0, 1, 2, 4, 6, 8, 9],   // 3~4 -> 4, 5~6 -> 6, 7~8 -> 8, ≥90% -> 9（保守）
-  "上肢": [0, 2, 5, 9, 13, 17, 18], // 1~2->2, 3~6->5, 7~10->9, 11~14->13, 15~18->17
-  "軀幹": [0, 3, 7, 12, 18, 24, 26], // 4~9->7, 10~14->12, 15~20->18, 21~26->24, ≥90%->26
-  "下肢": [0, 4, 8, 15, 22, 31, 35], // 5~11->8, 12~18->15, 19~25->22, 26~35->31, ≥90%->35
+  "頭": [0, 1, 2, 4, 6, 8, 9],
+  "上肢": [0, 2, 5, 9, 13, 17, 18],
+  "軀幹": [0, 3, 7, 12, 18, 24, 26],
+  "下肢": [0, 4, 8, 15, 22, 31, 35],
 };
 
 int estimatePalms(String region, int areaScore) {
@@ -90,15 +92,31 @@ class SeverityCalculatorPage extends StatefulWidget {
   const SeverityCalculatorPage({super.key});
 
   @override
-  State<SeverityCalculatorPage> createState() => _SeverityCalculatorPageState();
+  State<SeverityCalculatorPage> createState() =>
+      _SeverityCalculatorPageState();
 }
 
 class _SeverityCalculatorPageState extends State<SeverityCalculatorPage> {
+  final _dao = SeverityRecordDao();
+
   SeverityDisease disease = SeverityDisease.psoriasis;
+  /// =======================
+  /// 🔄 重置所有部位輸入為預設值
+  /// - 疾病切換時呼叫
+  /// - 不影響 UI 結構
+  /// =======================
+  void _resetRegions() {
+    regions.forEach((_, d) {
+      d['a'] = 0;
+      d['b'] = 0;
+      d['c'] = 0;
+      d['d'] = 0;
+      d['area'] = 0;
+      d['bsaPalm'] = 0;
+    });
+  }
 
   /// 四個部位
-  /// area：面積「分級 0..6」給 PASI/EASI 用（你原本的）
-  /// bsaPalm：掌心數（新增，用來算 BSA）
   final Map<String, Map<String, int>> regions = {
     "頭": {"a": 0, "b": 0, "c": 0, "d": 0, "area": 0, "bsaPalm": 0},
     "上肢": {"a": 0, "b": 0, "c": 0, "d": 0, "area": 0, "bsaPalm": 0},
@@ -107,7 +125,7 @@ class _SeverityCalculatorPageState extends State<SeverityCalculatorPage> {
   };
 
   /// =======================
-  /// PASI（你原本寫法 OK）
+  /// PASI
   /// =======================
   double calcPASI() {
     const weights = {"頭": 0.1, "上肢": 0.2, "軀幹": 0.3, "下肢": 0.4};
@@ -116,8 +134,8 @@ class _SeverityCalculatorPageState extends State<SeverityCalculatorPage> {
     regions.forEach((region, d) {
       final areaScore = d["area"] ?? 0;
       if (areaScore == 0) return;
-
-      final severity = (d["a"] ?? 0) + (d["b"] ?? 0) + (d["c"] ?? 0);
+      final severity =
+          (d["a"] ?? 0) + (d["b"] ?? 0) + (d["c"] ?? 0);
       total += severity * areaScore * weights[region]!;
     });
 
@@ -125,7 +143,7 @@ class _SeverityCalculatorPageState extends State<SeverityCalculatorPage> {
   }
 
   /// =======================
-  /// EASI（結構 OK；你把它當簡化 EASI 沒問題）
+  /// EASI
   /// =======================
   double calcEASI() {
     const weights = {"頭": 0.1, "上肢": 0.2, "軀幹": 0.3, "下肢": 0.4};
@@ -134,28 +152,17 @@ class _SeverityCalculatorPageState extends State<SeverityCalculatorPage> {
     regions.forEach((region, d) {
       final areaScore = d["area"] ?? 0;
       if (areaScore == 0) return;
-
-      final severity = (d["a"] ?? 0) + (d["b"] ?? 0) + (d["c"] ?? 0) + (d["d"] ?? 0);
+      final severity =
+          (d["a"] ?? 0) +
+          (d["b"] ?? 0) +
+          (d["c"] ?? 0) +
+          (d["d"] ?? 0);
       total += severity * areaScore * weights[region]!;
     });
 
     return total;
   }
 
-  /// =======================
-  /// BSA（掌心法：1 掌 ≈ 1%）
-  /// =======================
-  // double calcBSA() {
-  //   double total = 0;
-  //   regions.forEach((_, d) {
-  //     total += (d["bsaPalm"] ?? 0) * 1.0;
-  //   });
-  //   return total;
-  // }
-
-  /// =======================
-  /// 分級
-  /// =======================
   String getSeverityLevel(double score) {
     if (score < 7) return "輕度";
     if (score < 12) return "中度";
@@ -163,133 +170,35 @@ class _SeverityCalculatorPageState extends State<SeverityCalculatorPage> {
   }
 
   /// =======================
-  /// 下拉選單
+  /// ✅ 新增：儲存資料（唯一新增邏輯）
   /// =======================
-  Widget buildDropdown({
-    required String label,
-    required String keyName,
-    required Map<String, int> data,
-    required Map<int, String> options,
-    required bool enabled,
-    ValueChanged<int?>? onChanged, // ✅ 允許針對 area 做特例
-  }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 14,
-              color: enabled ? Colors.white : Colors.white38,
-            ),
-          ),
-          const SizedBox(height: 6),
-          DropdownButtonFormField<int>(
-            value: data[keyName],
-            isExpanded: true,
-            decoration: InputDecoration(
-              isDense: true,
-              border: const OutlineInputBorder(),
-              filled: !enabled,
-              fillColor: enabled ? null : Colors.white10,
-            ),
-            items: options.entries
-                .map((e) => DropdownMenuItem(value: e.key, child: Text(e.value)))
-                .toList(),
-            onChanged: enabled
-                ? (v) {
-                    if (onChanged != null) return onChanged(v);
-                    setState(() => data[keyName] = v ?? 0);
-                  }
-                : null,
-          ),
-        ],
-      ),
+  Future<void> saveRecord() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    final score =
+        disease == SeverityDisease.psoriasis ? calcPASI() : calcEASI();
+
+    await _dao.insertRecords(
+      uid: user.uid,
+      disease: disease.name,
+      totalScore: score,
+      regions: regions,
+    );
+
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("✅ 已儲存本次評估")),
     );
   }
 
-  Widget buildRegion(String region) {
-  final d = regions[region]!;
-  final enabled = (d["area"] ?? 0) > 0;
-
-  return Card(
-    margin: const EdgeInsets.symmetric(vertical: 8),
-    child: Padding(
-      padding: const EdgeInsets.all(12),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            region,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-
-          const SizedBox(height: 8),
-
-          /// ✅ ① 面積先選（最直觀）
-          buildDropdown(
-            label: "病灶面積（掌心法）",
-            keyName: "area",
-            data: d,
-            options: areaLabelsByRegion[region]!,
-            enabled: true,
-            onChanged: (v) {
-              final areaScore = v ?? 0;
-              setState(() {
-                d["area"] = areaScore;
-                d["bsaPalm"] = estimatePalms(region, areaScore);
-              });
-            },
-          ),
-
-          const Divider(),
-
-          /// ② 以下嚴重度，只有選了面積才啟用
-          buildDropdown(
-            label: "紅斑",
-            keyName: "a",
-            data: d,
-            options: severityLabels,
-            enabled: enabled,
-          ),
-
-          buildDropdown(
-            label: "厚度 / 浸潤",
-            keyName: "b",
-            data: d,
-            options: severityLabels,
-            enabled: enabled,
-          ),
-
-          buildDropdown(
-            label: "鱗屑 / 抓痕",
-            keyName: "c",
-            data: d,
-            options: severityLabels,
-            enabled: enabled,
-          ),
-
-          if (disease == SeverityDisease.eczema)
-            buildDropdown(
-              label: "苔癬化",
-              keyName: "d",
-              data: d,
-              options: severityLabels,
-              enabled: enabled,
-            ),
-        ],
-      ),
-    ),
-  );
-}
-
-
+  /// =======================
+  /// UI（原樣）
+  /// =======================
   @override
   Widget build(BuildContext context) {
-    final score = disease == SeverityDisease.psoriasis ? calcPASI() : calcEASI();
-    // final bsa = calcBSA();
+    final score =
+        disease == SeverityDisease.psoriasis ? calcPASI() : calcEASI();
 
     return Scaffold(
       appBar: AppBar(title: const Text("皮膚病嚴重度計算")),
@@ -310,18 +219,152 @@ class _SeverityCalculatorPageState extends State<SeverityCalculatorPage> {
                   child: Text("濕疹 / 異位性皮膚炎（EASI）"),
                 ),
               ],
-              onChanged: (v) => setState(() => disease = v!),
+              onChanged: (v) {
+                if (v == null) return;
+                setState(() {
+                  disease = v;
+                  _resetRegions(); // ⭐ 關鍵：切換疾病時清空下方輸入
+                });
+              },
+
             ),
             const SizedBox(height: 12),
+            /// =======================
+            /// 📈 嚴重度趨勢圖（只讀）
+            /// - 不影響計算
+            /// - 依目前選擇的疾病自動切換
+            /// =======================
+            SeverityTrendPanel(
+              disease: disease.name, // psoriasis / eczema
+              limit: 5,
+            ),
+
+            const SizedBox(height: 12),
+
             ...regions.keys.map(buildRegion),
             const SizedBox(height: 20),
-            // Text("BSA：約 ${bsa.toStringAsFixed(1)} %",
-            //     style: const TextStyle(fontSize: 16)),
-            const SizedBox(height: 8),
             Text("總分：${score.toStringAsFixed(1)}",
                 style: const TextStyle(fontSize: 20)),
             Text("嚴重度分級：${getSeverityLevel(score)}",
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                style: const TextStyle(
+                    fontSize: 18, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 24),
+
+            /// ✅ 只新增這顆按鈕
+            ElevatedButton.icon(
+              onPressed: saveRecord,
+              icon: const Icon(Icons.save),
+              label: const Text("儲存本次評估"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// ===== 原本 UI 方法（未動）=====
+  Widget buildDropdown({
+    required String label,
+    required String keyName,
+    required Map<String, int> data,
+    required Map<int, String> options,
+    required bool enabled,
+    ValueChanged<int?>? onChanged,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(label,
+              style: TextStyle(
+                  fontSize: 14,
+                  color: enabled ? Colors.white : Colors.white38)),
+          const SizedBox(height: 6),
+          DropdownButtonFormField<int>(
+            value: data[keyName],
+            isExpanded: true,
+            decoration: InputDecoration(
+              isDense: true,
+              border: const OutlineInputBorder(),
+              filled: !enabled,
+              fillColor: enabled ? null : Colors.white10,
+            ),
+            items: options.entries
+                .map((e) =>
+                    DropdownMenuItem(value: e.key, child: Text(e.value)))
+                .toList(),
+            onChanged: enabled
+                ? (v) {
+                    if (onChanged != null) return onChanged(v);
+                    setState(() => data[keyName] = v ?? 0);
+                  }
+                : null,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildRegion(String region) {
+    final d = regions[region]!;
+    final enabled = (d["area"] ?? 0) > 0;
+
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(region,
+                style: const TextStyle(
+                    fontSize: 16, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 8),
+            buildDropdown(
+              label: "病灶面積（掌心法）",
+              keyName: "area",
+              data: d,
+              options: areaLabelsByRegion[region]!,
+              enabled: true,
+              onChanged: (v) {
+                final areaScore = v ?? 0;
+                setState(() {
+                  d["area"] = areaScore;
+                  d["bsaPalm"] = estimatePalms(region, areaScore);
+                });
+              },
+            ),
+            const Divider(),
+            buildDropdown(
+              label: "紅斑",
+              keyName: "a",
+              data: d,
+              options: severityLabels,
+              enabled: enabled,
+            ),
+            buildDropdown(
+              label: "厚度 / 浸潤",
+              keyName: "b",
+              data: d,
+              options: severityLabels,
+              enabled: enabled,
+            ),
+            buildDropdown(
+              label: "鱗屑 / 抓痕",
+              keyName: "c",
+              data: d,
+              options: severityLabels,
+              enabled: enabled,
+            ),
+            if (disease == SeverityDisease.eczema)
+              buildDropdown(
+                label: "苔癬化",
+                keyName: "d",
+                data: d,
+                options: severityLabels,
+                enabled: enabled,
+              ),
           ],
         ),
       ),

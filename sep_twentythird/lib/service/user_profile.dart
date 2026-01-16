@@ -1,7 +1,7 @@
 class UserProfile {
   final String uid;
 
-  final String? birthday; // ISO yyyy-MM-dd
+  final String? birthday; // yyyy-MM-dd
   final String? gender;   // male / female / other
   final double? heightCm;
   final double? weightKg;
@@ -23,26 +23,44 @@ class UserProfile {
     required this.updatedAt,
   });
 
-  /// =======================
-  /// 從 SQLite Map 轉成物件
-  /// =======================
+  // =======================
+  // SQLite → Model（防呆完整版）
+  // =======================
   factory UserProfile.fromMap(Map<String, dynamic> map) {
+    double? _toDouble(dynamic v) {
+      if (v == null) return null;
+      if (v is double) return v;
+      if (v is int) return v.toDouble();
+      if (v is String) return double.tryParse(v);
+      return null;
+    }
+
+    int _toInt(dynamic v, {int defaultValue = 0}) {
+      if (v == null) return defaultValue;
+      if (v is int) return v;
+      if (v is String) return int.tryParse(v) ?? defaultValue;
+      return defaultValue;
+    }
+
     return UserProfile(
-      uid: map['uid'],
-      birthday: map['birthday'],
-      gender: map['gender'],
-      heightCm: map['height_cm']?.toDouble(),
-      weightKg: map['weight_kg']?.toDouble(),
-      chronicConditions: map['chronic_conditions'],
-      email: map['email'],
-      phone: map['phone'],
-      updatedAt: map['updated_at'],
+      uid: map['uid']?.toString() ?? '',
+      birthday: map['birthday']?.toString(),
+      gender: map['gender']?.toString(),
+      heightCm: _toDouble(map['height_cm']),
+      weightKg: _toDouble(map['weight_kg']),
+      chronicConditions: map['chronic_conditions']?.toString(),
+      email: map['email']?.toString(),
+      phone: map['phone']?.toString(),
+      updatedAt: _toInt(
+        map['updated_at'],
+        defaultValue: DateTime.now().millisecondsSinceEpoch,
+      ),
     );
   }
 
-  /// =======================
-  /// 轉成 SQLite Map
-  /// =======================
+  // =======================
+  // Model → SQLite
+  // =======================
   Map<String, dynamic> toMap() {
     return {
       'uid': uid,
@@ -57,10 +75,9 @@ class UserProfile {
     };
   }
 
-  /// =======================
-  /// 建立「空白使用者」
-  /// （第一次登入但尚未填）
-  /// =======================
+  // =======================
+  // 第一次登入用的空白 Profile
+  // =======================
   factory UserProfile.empty(String uid, {String? email}) {
     return UserProfile(
       uid: uid,

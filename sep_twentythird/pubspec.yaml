@@ -40,6 +40,7 @@ dependencies:
   url_launcher: ^6.2.6
   sqflite: ^2.3.0
   path: ^1.9.0
+  fl_chart: ^0.66.0
 
 
   # The following adds the Cupertino Icons font to your application.
