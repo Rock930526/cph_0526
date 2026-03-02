@@ -1,50 +1,96 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sep_twentythird/page/profile_edit_page.dart';
+import 'package:sep_twentythird/widget/image_carousel.dart';
+import 'package:sep_twentythird/service/database_helper.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+  double? _psoriasisScore;
+  double? _eczemaScore;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadLatestScores();
+  }
+
+  Future<void> _loadLatestScores() async {
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+    final db = await DatabaseHelper.instance.database;
+
+    final psoriasis = await db.query(
+      'severity_assessment',
+      where: 'uid = ? AND disease = ?',
+      whereArgs: [uid, 'psoriasis'], // 如果你存中文改成 '乾癬'
+      orderBy: 'created_at DESC',
+      limit: 1,
+    );
+
+    final eczema = await db.query(
+      'severity_assessment',
+      where: 'uid = ? AND disease = ?',
+      whereArgs: [uid, 'eczema'], // 如果你存中文改成 '濕疹'
+      orderBy: 'created_at DESC',
+      limit: 1,
+    );
+
+    setState(() {
+      _psoriasisScore = psoriasis.isNotEmpty
+          ? (psoriasis.first['total_score'] as num).toDouble()
+          : null;
+
+      _eczemaScore = eczema.isNotEmpty
+          ? (eczema.first['total_score'] as num).toDouble()
+          : null;
+    });
+  }
+
   /// =======================
-  /// 使用者小選單（右上角）
+  /// 使用者小選單（完全沒動）
   /// =======================
   void _showUserMenu(BuildContext context) {
-  final user = FirebaseAuth.instance.currentUser;
+    final user = FirebaseAuth.instance.currentUser;
 
-  showModalBottomSheet(
-    context: context,
-    backgroundColor: Colors.transparent,
-    builder: (_) {
-      return Container(
-        margin: const EdgeInsets.all(12),
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        decoration: BoxDecoration(
-          color: const Color(0xFF2B2B2B),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Colors.cyanAccent,
-                backgroundImage:
-                    user?.photoURL != null ? NetworkImage(user!.photoURL!) : null,
-                child: user?.photoURL == null
-                    ? const Icon(Icons.person, color: Colors.black)
-                    : null,
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (_) {
+        return Container(
+          margin: const EdgeInsets.all(12),
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          decoration: BoxDecoration(
+            color: const Color(0xFF2B2B2B),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.cyanAccent,
+                  backgroundImage:
+                      user?.photoURL != null ? NetworkImage(user!.photoURL!) : null,
+                  child: user?.photoURL == null
+                      ? const Icon(Icons.person, color: Colors.black)
+                      : null,
+                ),
+                title: Text(
+                  user?.displayName ?? '未命名使用者',
+                  style: const TextStyle(color: Colors.white),
+                ),
+                subtitle: Text(
+                  user?.email ?? '',
+                  style: const TextStyle(color: Colors.white54),
+                ),
               ),
-              title: Text(
-                user?.displayName ?? '未命名使用者',
-                style: const TextStyle(color: Colors.white),
-              ),
-              subtitle: Text(
-                user?.email ?? '',
-                style: const TextStyle(color: Colors.white54),
-              ),
-            ),
-
-
               const Divider(color: Colors.white24),
 
               _menuItem(Icons.auto_fix_high, '個人化', () {
@@ -56,7 +102,6 @@ class HomePage extends StatelessWidget {
                   ),
                 );
               }),
-
 
               _menuItem(Icons.settings, '設定', () {
                 Navigator.pop(context);
@@ -73,10 +118,7 @@ class HomePage extends StatelessWidget {
                 '登出',
                 () async {
                   Navigator.pop(context);
-
                   await FirebaseAuth.instance.signOut();
-                  // ❗ 不用 push、不用 pop
-                  // AuthGate 會自動把你送回登入頁
                 },
                 color: Colors.redAccent,
               ),
@@ -87,7 +129,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  /// 單一選單項目
   static Widget _menuItem(
     IconData icon,
     String text,
@@ -123,35 +164,35 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // 🔄 輪播區（placeholder）
-              Container(
+              // 🔄 輪播區（完全沒動）
+              const ImageCarousel(
+                assets: [
+                  'assets/carousel/slide1.jpg',
+                  'assets/carousel/slide2.jpg',
+                ],
                 height: 160,
-                decoration: BoxDecoration(
-                  color: Colors.white12,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: const Center(
-                  child: Text(
-                    '輪播區（衛教 / 教學）',
-                    style: TextStyle(color: Colors.white54),
-                  ),
-                ),
+                borderRadius: BorderRadius.all(Radius.circular(16)),
               ),
 
               const SizedBox(height: 20),
 
-              // 📊 分數卡
+              // 📊 分數卡（只改這裡顯示資料）
               Row(
                 children: [
-                  _scoreCard('上一次乾癬分數', '--'),
+                  _scoreCard(
+                    '上一次乾癬分數',
+                    _psoriasisScore?.toStringAsFixed(1) ?? '--',
+                  ),
                   const SizedBox(width: 12),
-                  _scoreCard('上一次濕疹分數', '--'),
+                  _scoreCard(
+                    '上一次濕疹分數',
+                    _eczemaScore?.toStringAsFixed(1) ?? '--',
+                  ),
                 ],
               ),
 
               const SizedBox(height: 16),
 
-              // 🔍 辨識結果
               const Text(
                 '上次辨識結果：尚無資料',
                 style: TextStyle(color: Colors.white70),

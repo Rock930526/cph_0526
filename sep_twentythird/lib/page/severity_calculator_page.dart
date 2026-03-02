@@ -4,7 +4,6 @@ import '../service/severity_record_dao.dart';
 import '../widget/severity_trend_panel.dart';
 
 
-
 /// =======================
 /// 疾病類型
 /// =======================
@@ -98,7 +97,8 @@ class SeverityCalculatorPage extends StatefulWidget {
 
 class _SeverityCalculatorPageState extends State<SeverityCalculatorPage> {
   final _dao = SeverityRecordDao();
-
+  final GlobalKey<SeverityTrendPanelState> _trendKey =
+    GlobalKey<SeverityTrendPanelState>();
   SeverityDisease disease = SeverityDisease.psoriasis;
   /// =======================
   /// 🔄 重置所有部位輸入為預設值
@@ -173,6 +173,7 @@ class _SeverityCalculatorPageState extends State<SeverityCalculatorPage> {
   /// ✅ 新增：儲存資料（唯一新增邏輯）
   /// =======================
   Future<void> saveRecord() async {
+    print("現在儲存 disease = ${disease.name}");
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
 
@@ -185,6 +186,7 @@ class _SeverityCalculatorPageState extends State<SeverityCalculatorPage> {
       totalScore: score,
       regions: regions,
     );
+    _trendKey.currentState?.refresh();
 
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
@@ -235,7 +237,8 @@ class _SeverityCalculatorPageState extends State<SeverityCalculatorPage> {
             /// - 依目前選擇的疾病自動切換
             /// =======================
             SeverityTrendPanel(
-              disease: disease.name, // psoriasis / eczema
+              key: _trendKey,
+              disease: disease.name,
               limit: 5,
             ),
 

@@ -25,12 +25,12 @@ class SeverityTrendPanel extends StatefulWidget {
   });
 
   @override
-  State<SeverityTrendPanel> createState() => _SeverityTrendPanelState();
+  State<SeverityTrendPanel> createState() => SeverityTrendPanelState();
 }
 
-class _SeverityTrendPanelState extends State<SeverityTrendPanel> {
+class SeverityTrendPanelState extends State<SeverityTrendPanel> {
   final _dao = SeverityRecordDao();
-
+  
   bool _loading = true;
 
   /// rows：[{id, created_at, total_score}, ...]（舊→新）
@@ -44,6 +44,14 @@ class _SeverityTrendPanelState extends State<SeverityTrendPanel> {
   void initState() {
     super.initState();
     _load();
+  }
+  @override
+  void didUpdateWidget(covariant SeverityTrendPanel oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.disease != widget.disease) {
+      _load();
+    }
   }
 
   /// ✅ 外部可呼叫：讓你存完直接更新圖表
