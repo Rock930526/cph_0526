@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
     final psoriasis = await db.query(
       'severity_assessment',
       where: 'uid = ? AND disease = ?',
-      whereArgs: [uid, 'psoriasis'], // 如果你存中文改成 '乾癬'
+      whereArgs: [uid, 'psoriasis'],
       orderBy: 'created_at DESC',
       limit: 1,
     );
@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
     final eczema = await db.query(
       'severity_assessment',
       where: 'uid = ? AND disease = ?',
-      whereArgs: [uid, 'eczema'], // 如果你存中文改成 '濕疹'
+      whereArgs: [uid, 'eczema'],
       orderBy: 'created_at DESC',
       limit: 1,
     );
@@ -53,9 +53,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  /// =======================
-  /// 使用者小選單（完全沒動）
-  /// =======================
   void _showUserMenu(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
 
@@ -91,9 +88,10 @@ class _HomePageState extends State<HomePage> {
                   style: const TextStyle(color: Colors.white54),
                 ),
               ),
+
               const Divider(color: Colors.white24),
 
-              _menuItem(Icons.auto_fix_high, '個人化', () {
+              _menuItem(Icons.auto_fix_high, '個人基本資料設定', () {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
@@ -103,11 +101,11 @@ class _HomePageState extends State<HomePage> {
                 );
               }),
 
-              _menuItem(Icons.settings, '設定', () {
+              _menuItem(Icons.settings, '設定(未開發)', () {
                 Navigator.pop(context);
               }),
 
-              _menuItem(Icons.info_outline, '說明', () {
+              _menuItem(Icons.info_outline, '說明(未開發)', () {
                 Navigator.pop(context);
               }),
 
@@ -159,46 +157,43 @@ class _HomePageState extends State<HomePage> {
       ),
 
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: ListView(
           padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // 🔄 輪播區（完全沒動）
-              const ImageCarousel(
-                assets: [
-                  'assets/carousel/slide1.jpg',
-                  'assets/carousel/slide2.jpg',
-                ],
-                height: 160,
-                borderRadius: BorderRadius.all(Radius.circular(16)),
-              ),
+          children: [
 
-              const SizedBox(height: 20),
+            const ImageCarousel(
+              assets: [
+                'assets/carousel/slide1.jpg',
+                'assets/carousel/slide2.jpg',
+              ],
+              height: 160,
+              borderRadius: BorderRadius.all(Radius.circular(16)),
+            ),
 
-              // 📊 分數卡（只改這裡顯示資料）
-              Row(
-                children: [
-                  _scoreCard(
-                    '上一次乾癬分數',
-                    _psoriasisScore?.toStringAsFixed(1) ?? '--',
-                  ),
-                  const SizedBox(width: 12),
-                  _scoreCard(
-                    '上一次濕疹分數',
-                    _eczemaScore?.toStringAsFixed(1) ?? '--',
-                  ),
-                ],
-              ),
+            const SizedBox(height: 20),
 
-              const SizedBox(height: 16),
+            Row(
+              children: [
+                _scoreCard(
+                  '上一次乾癬分數',
+                  _psoriasisScore?.toStringAsFixed(1) ?? '--',
+                ),
+                const SizedBox(width: 12),
+                _scoreCard(
+                  '上一次濕疹分數',
+                  _eczemaScore?.toStringAsFixed(1) ?? '--',
+                ),
+              ],
+            ),
 
-              const Text(
-                '上次辨識結果：尚無資料',
-                style: TextStyle(color: Colors.white70),
-              ),
-            ],
-          ),
+            const SizedBox(height: 16),
+
+            const Text(
+              '上次辨識結果：尚無資料',
+              style: TextStyle(color: Colors.white70),
+            ),
+
+          ],
         ),
       ),
     );

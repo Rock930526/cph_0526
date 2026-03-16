@@ -46,18 +46,17 @@ class _AppShellPageState extends State<AppShellPage> {
         color: Colors.black,
         child: SafeArea(
           top: false,
-          child: SizedBox(
-            height: 72,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _navItem(Icons.home, '首頁', 0),
-                _navItem(Icons.map, '就醫地圖', 1),
-                _cameraItem(),
-                _navItem(Icons.calculate, '計算', 3),
-                _navItem(Icons.smart_toy, '衛教機器人', 4),
-              ],
-            ),
+          bottom: false,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              _navItem(Icons.home, '首頁', 0),
+              _navItem(Icons.map, '就醫地圖', 1),
+              _cameraItem(),
+              _navItem(Icons.calculate, '計算', 3),
+              _navItem(Icons.smart_toy, '衛教機器人', 4),
+            ],
           ),
         ),
       ),
@@ -88,12 +87,15 @@ class _AppShellPageState extends State<AppShellPage> {
         mainAxisSize: MainAxisSize.min,
         children: const [
           CircleAvatar(
-            radius: 26,
+            radius: 17,
             backgroundColor: Colors.cyanAccent,
             child: Icon(Icons.camera_alt, color: Colors.black, size: 28),
           ),
           SizedBox(height: 4),
-          Text('相機', style: TextStyle(color: Colors.cyanAccent, fontSize: 12)),
+          Text(
+            '相機',
+            style: TextStyle(color: Colors.cyanAccent, fontSize: 12),
+          ),
         ],
       ),
     );

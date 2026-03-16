@@ -83,7 +83,7 @@ class _LlmPageState extends State<LlmPage> {
 
     buffer.writeln('\n【使用者問題】');
     buffer.writeln(userInput);
-    buffer.writeln('\n請以繁體中文回覆，並提醒此為輔助建議，非最終醫療判斷。');
+    buffer.writeln('\n請必須以繁體中文回覆，並提醒此為輔助建議，非最終醫療判斷。');
 
     return buffer.toString();
   }
@@ -109,7 +109,7 @@ class _LlmPageState extends State<LlmPage> {
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           "model": "deepseek-r1:14b",
-          "prompt": _buildPrompt(text),
+          "question": _buildPrompt(text),
           "temperature": 0.7,
           "stream": false,
         }),
